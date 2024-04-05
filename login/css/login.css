@@ -1,0 +1,87 @@
+*{
+    --brown: #905936;
+    --verde_claro: #DEED87;
+    --white: #FEFCFB;
+    --black: #424242;
+    --verde: #BAE65B;
+}
+
+body{
+    background-color: var(--brown);
+    font-family: "DM Sans", sans-serif;
+}
+
+.container{
+    padding: 5% 10%;
+    justify-content:space-evenly;
+}
+
+.card{
+    width: 300px;
+    text-align: center;
+}
+
+#conectese{
+    background-color: var(--verde_claro);
+    border-radius: 15px 15px 0 0;
+    padding: 10px;
+}
+h1{
+    margin: 0;
+    font-size: 30px;
+}
+.form{
+    padding: 10px 0 50px 0;
+    background-color: var(--white);
+    text-align: center;
+    border-radius: 0 0 15px 15px;
+}
+
+.form input{
+    display: block;
+    margin: 30px auto;
+    border: solid 2px var(--black);
+    border-radius: 15px;
+    padding: 10px 12px;
+}
+
+input::-webkit-input-placeholder{
+    color: var(--black);
+    font-size: 15px;
+    font-style: bold;
+}
+
+button{
+    background-color: var(--verde);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 40px;
+}
+
+button h6{
+    margin: 0;
+    font-size: 15px;
+}
+
+.senha{
+    background-image: url('../img/eye-solid.svg');
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 10px) center;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+@media (min-width: 999px) {
+    .container{
+        display: flex;
+    }    
+}
+
+@media (max-width: 999px) {
+    .card{
+        margin: 0px auto 50px auto;
+    }
+}
