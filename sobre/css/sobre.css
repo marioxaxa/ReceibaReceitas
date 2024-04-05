@@ -1,0 +1,95 @@
+* {
+    --text: #0d0402;
+    --background: #fefcfb;
+    --primary: #de702b;
+    --secondary: #deed87;
+    --accent: #bae65b;
+  }
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #8AA451;
+    font-family: "DM Sans", sans-serif;
+}
+
+.titulo{
+    margin: 2% 15%;
+    padding: 20px 40px;
+    border-radius: 10px;
+    background-color: var(--accent);
+}
+
+.conteudo{
+    margin: 2% 15%;
+    padding: 20px 40px;
+    border-radius: 10px;
+    background-color: var(--background);
+}
+
+.card{
+    display: flex;
+    margin: 30px 0;
+}
+
+.card img{
+    width: 100px;
+    height: 100px;
+    margin: auto 15px auto 0;
+}
+
+h1, h2{
+    margin: 0;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td{
+    height: 60px;
+    text-align: center;
+    font-weight:500;
+    border: solid 3px black;
+    border-top: none;
+}
+
+td:nth-child(1){
+    border-left: none;
+}
+
+@media (min-width: 999px) {
+    td{
+        font-size: 20px;
+    }
+}
+
+  
+footer {
+    background-color: var(--text);
+    color: #c4c4c4;
+  }
+  
+  #footer-div {
+    margin: 0 20%;
+    padding: 1% 0 1.5% 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #footer-sociais {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+  
