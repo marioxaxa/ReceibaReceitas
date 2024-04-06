@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  --text: #0d0402;
+  --background: #fefcfb;
+  --primary: #de702b;
+  --secondary: #deed87;
+  --accent: #bae65b;
+}
+
+header {
+  background-color: var(--text);
+  color: #c4c4c4;
+}
+
+#header-div {
+  margin: 0 20%;
+  padding: 1% 0 1.5% 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-options {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+#header-logo {
+  flex: 1;
+}
+
+.header-options > div {
+  flex: 1;
+}
+
+checkbox-menu:checked {
+  background-color:;
+}
