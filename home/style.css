@@ -8,40 +8,6 @@
   --accent: #bae65b;
 }
 
-body {
-  font-family: "DM Sans", sans-serif;
-  background-color: var(--primary);
-}
-
-header {
-  background-color: var(--text);
-  color: #c4c4c4;
-}
-
-#header-div {
-  margin: 0 20%;
-  padding: 1% 0 1.5% 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header-options {
-  font-size: small;
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
-
-#header-logo {
-  flex: 1;
-}
-
-.header-options > div {
-  flex: 1;
-}
-
 footer {
   background-color: var(--text);
   color: #c4c4c4;
@@ -67,38 +33,4 @@ footer {
   display: flex;
   align-items: center;
   gap: 5%;
-}
-
-section {
-  margin: 2.5% 20%;
-}
-
-#nos-mande {
-  background-color: var(--secondary);
-  padding: 4% 8%;
-  border-radius: 15px;
-  font-size: 180%;
-}
-
-#form-receita {
-  background-color: var(--background);
-  border-radius: 15px;
-  margin-top: 3%; 
-  padding: 4% 8%;
-  text-align: center;
-}
-
-
-
-input {
-  padding: 10px 12px;
-  border: solid 2px black; 
-}
-
-button{
-  background-color: var(--accent);
-  border: none;
-  border-radius: 5px;
-  padding: 10px 40px;
-  margin: 0 auto;
 }

@@ -1,42 +1,65 @@
 * {
-  margin: 0;
-  padding: 0;
-  --text: #0d0402;
-  --background: #fefcfb;
-  --primary: #de702b;
-  --secondary: #deed87;
-  --accent: #bae65b;
+    margin: 0;
+    padding: 0;
+    --text: #0d0402;
+    --background: #fefcfb;
+    --primary: #de702b;
+    --secondary: #deed87;
+    --accent: #bae65b;
 }
 
 header {
-  background-color: var(--text);
-  color: #c4c4c4;
+    background-color: var(--text);
+    color: #c4c4c4;
 }
 
 #header-div {
-  margin: 0 20%;
-  padding: 1% 0 1.5% 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+    margin: 0 20%;
+    padding: 1% 0 1.5% 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .header-options {
-  font-size: small;
-  display: flex;
-  align-items: center;
-  flex: 1;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    flex: 1;
 }
 
 #header-logo {
-  flex: 1;
+    flex: 1;
 }
 
 .header-options > div {
-  flex: 1;
+    flex: 1;
 }
 
-checkbox-menu:checked {
-  background-color:;
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    color: red;
+    fill: red;
+    transform: translateY(-0.075em);
+    content: url(../../public/svgs/menubars.svg);
+}
+
+input[type="checkbox"] > svg {
+  fill: red;
 }
