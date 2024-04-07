@@ -8,7 +8,7 @@
     --accent: #bae65b;
 }
 
-/*  */
+/* Inicio do header */
 header {
     background-color: var(--text);
     color: #c4c4c4;
@@ -104,3 +104,5 @@ input[type="checkbox"] {
         margin-top: 1rem;
     }
 }
+
+/* Final do header */
