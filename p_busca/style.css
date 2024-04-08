@@ -76,10 +76,19 @@ section {
   border-radius: 0 0 15px 15px;
 }
 
+.lista-categoria {
+  display: flex;
+  flex-direction: column;
+  gap: 3%;
+  margin-bottom: 5%;
+
+}
+
 .receita {
   width: 90%;
   display: flex;
   border-radius: 15px;
+  margin-bottom: 3%;
 }
 
 .receita-info {
@@ -93,10 +102,10 @@ section {
 }
 
 .receita-info > h3 {
-  margin-bottom: 3%;
+  margin-bottom: 1%;
 }
 .receita-info > p {
-  margin-bottom: 3%;
+  margin-bottom: 4%;
 
 }
 
@@ -143,7 +152,7 @@ section {
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 9%;
+  top: 10%;
 }
 
 input[type="text"] {
@@ -162,7 +171,7 @@ input[type="text"] {
   padding-bottom: 2%;
   border-radius: 0 0 15px 15px;
   position: sticky;
-  top: 16%;
+  top: 17%;
   flex-wrap: wrap;
   align-items: center;
 }
