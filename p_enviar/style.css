@@ -90,6 +90,38 @@ section {
   height: 250px;
 }
 
+@media (max-width: 900px) {
+  
+  section {
+    margin: 2.5% 5%;
+  }
+
+  #nos-mande {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  #detalhes-receita {
+      flex-direction: column;
+  
+  }
+
+#detalhes-receita >input {
+  width: auto;
+}
+
+#preparo-receita {
+  flex-direction: column;
+}
+
+#preparo-receita > textarea {
+  width: auto;
+  height: 100%;
+}
+
+}
+
+
 #ingredientes {
   width: 40%;
 }
