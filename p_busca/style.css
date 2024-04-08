@@ -17,6 +17,7 @@ body {
     background-color: var(--background2);
 }
 
+/* Inicio do header */
 header {
     background-color: var(--text);
     color: #c4c4c4;
@@ -29,10 +30,11 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
 }
 
 .header-options {
-    font-size: small;
+    font-size: medium;
     display: flex;
     align-items: center;
     flex: 1;
@@ -46,9 +48,89 @@ header {
     flex: 1;
 }
 
-checkbox-menu:checked {
-    background-color: ;
+.header-options > div > a {
+    text-decoration: none;
+    color: #c4c4c4;
 }
+
+.header-options > div > a:link {
+    color: #c4c4c4;
+}
+.header-options > div > a:visited {
+    color: #c4c4c4;
+}
+
+.header-options > div > a:hover {
+    color: var(--primary);
+}
+
+input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: transparent;
+    /* Not removed via appearance */
+    margin: 0;
+}
+
+#div-menu-bars {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    #header-logo {
+        display: none;
+    }
+
+    #header-div {
+        margin: 0 10%;
+        padding: 5% 0;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #header-div:has(input#menu-bars[type="checkbox"]:checked)
+        > .header-options {
+        display: none;
+    }
+
+    #div-menu-bars {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input#menu-bars[type="checkbox"] {
+        appearance: none;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 2rem;
+        height: 2rem;
+        transform: translateY(-0.075em);
+        transform: rotate(90deg);
+        transition: 0.5s;
+        content: url(../../public/svgs/menubars.svg);
+    }
+
+    input#menu-bars[type="checkbox"]:checked {
+        transform: rotate(0deg);
+    }
+
+    .header-options {
+        font-size: larger;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-options > div {
+        margin-top: 1rem;
+    }
+}
+
+/* Final do header */
 
 section {
     margin: 2.5% 20%;

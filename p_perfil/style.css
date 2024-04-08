@@ -237,6 +237,18 @@ main > div:first-child > div {
     column-gap: 4%;
 }
 
+.card-holder > a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+.card-holder > a:link {
+    color: var(--text);
+}
+.card-holder > a:visited {
+    color: var(--text);
+}
+
 .sua-receita-card {
     display: flex;
     gap: 4%;
@@ -297,7 +309,6 @@ main > div:first-child > div {
 }
 
 @media (max-width: 900px) {
-
     main {
         padding: 1% 5%;
     }
@@ -308,6 +319,12 @@ main > div:first-child > div {
 
     main > div:first-child > div {
         margin: 1% 0;
+    }
+
+    .receita-box {
+        padding: 6% 10%;
+        flex: 1;
+        margin: 2% 0;
     }
 
     .sua-receita-card {
