@@ -4,115 +4,130 @@
     --primary: #de702b;
     --secondary: #deed87;
     --accent: #bae65b;
-  }
+}
 
-body{
+body {
     margin: 0;
     padding: 0;
-    background-color: #8AA451;
+    background-color: #8aa451;
     font-family: "DM Sans", sans-serif;
 }
 
-.titulo{
+.titulo {
     margin: 2% 15%;
     padding: 20px 40px;
     border-radius: 10px;
     background-color: var(--accent);
 }
 
-.conteudo{
+.conteudo {
     margin: 2% 15%;
     padding: 20px 40px;
     border-radius: 10px;
     background-color: var(--background);
 }
 
-.card{
+.card {
     display: flex;
     margin: 30px 0;
 }
 
-.card img{
+.card img {
     width: 100px;
     height: 100px;
 }
 
-h1, h2{
+h1,
+h2 {
     margin: 0;
 }
 
-table{
+table {
     border-collapse: collapse;
     width: 100%;
 }
 
-td{
+td {
     height: 60px;
     text-align: center;
-    font-weight:500;
+    font-weight: 500;
     border: solid 3px black;
     border-top: none;
 }
 
-td:nth-child(1){
+td:nth-child(1) {
     border-left: none;
 }
 
 @media (min-width: 999px) {
-    td{
+    td {
         font-size: 20px;
     }
 }
 
-@media (max-width: 999px){
-    .card{
+@media (max-width: 999px) {
+    .card {
         display: block;
     }
-    img{
+    img {
         display: block;
         margin: 0 auto;
     }
 
-    .card div h2{
+    .card div h2 {
         text-align: center;
     }
-    td{
+    td {
         font-size: 12px;
         border: solid 2px black;
         height: 30px;
         border-top: none;
     }
 
-    td:nth-child(1){
+    td:nth-child(1) {
         border-left: none;
     }
 }
 
-  
 footer {
     background-color: var(--text);
     color: #c4c4c4;
-  }
-  
-  #footer-div {
+}
+
+#footer-div {
     margin: 0 20%;
     padding: 1% 0 1.5% 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  #footer-logo {
+}
+
+#footer-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  #footer-sociais {
+}
+
+#footer-sociais {
     margin-top: 5%;
     display: flex;
     align-items: center;
     gap: 5%;
-  }
-  
+}
+
+a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+a:link {
+    color: var(--text);
+}
+a:visited {
+    color: var(--text);
+}
+
+a:hover {
+    color: var(--primary);
+}
