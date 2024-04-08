@@ -77,17 +77,48 @@ button:hover{
     cursor: pointer;
 }
 
-@media (min-width: 999px) {
+@media (min-width: 900px) {
     .container{
         display: flex;
     }    
 }
 
-@media (max-width: 999px) {
+@media (max-width: 900px) {
+    h1{
+        font-size: 1.5em;
+    }
+
+    .container{
+        padding: 5% 5%;
+    }
+
     .card{
-        margin: 0px auto 50px auto;
+        margin: 0 auto 50px auto;
+        width: 50%;
+        font: 1em;
+    }
+
+    button{
+        background-color: var(--verde);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 40px;
     }
 }
+
+@media (max-width: 520px) {
+    .card{
+        margin: 0 auto 50px auto;
+        width: 80%;
+        font: 1em;
+    }
+
+    .form input{
+        width: 60%;
+    }
+
+}
+
   footer {
     background-color: var(--text);
     color: #c4c4c4;
