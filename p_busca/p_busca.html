@@ -5,11 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <header>HOME PAGE</header>
+    <header>
+      <div id="header-div">
+        <div>
+          <input type="checkbox" name="menu" id="checkbox-menu" />
+        </div>
+        <div class="header-options">
+          <div>Receitas</div>
+          <div>Tipos</div>
+          <div>Envie sua receita</div>
+        </div>
+        <div id="header-logo"></div>
+        <div class="header-options">
+          <div>Perfil</div>
+          <div>Lupa</div>
+        </div>
+      </div>
+    </header>
     <main>
-      <section></section>
+      <section>
+        <div id="ache-aqui">
+          <h1>Ache aqui sua receita</h1>
+        </div>
+        <div id="encontre-receita">
+          <div id="lista-receita">
+            <div class="lista-categoria">
+              <h1>SOBREMESAS</h1>
+              <div class="receita">
+                <div class="receita-info">
+                  <h3>Torta de slime</h3>
+                  <p>Por: autor</p>
+                  <div class="tempo-porção">
+                    <div>
+                      <img src="../public/svgs/relogio.svg" alt="" /> <p>35 min</p>
+                    </div>
+                    <div>
+                      <img src="../public/svgs/porções.svg" alt="" /> <p id="correção">  6 porções </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="receita-img">
+                  <img src="../public/imagens/comida.png" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="filtro">
+            <div id="filtrar-por-tipo">
+              <h1>Filtrar por tipo</h1>
+            </div>
+            <div id="pesquisar">
+              <input type="text" placeholder="Pesquisar nome" />
+            </div>
+            <div id="marcadores">
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Aves
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Bebidas
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Carnes
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Sobremesas
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Lanches
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Massas
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Frutos do mar
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Saladas
+              </div>
+              <div class="opção">
+                <input type="checkbox" name="" id="" /> Sopas
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer>
       <div id="footer-div">
