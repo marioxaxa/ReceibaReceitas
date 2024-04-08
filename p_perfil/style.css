@@ -143,7 +143,7 @@ footer {
 
 main {
     background-color: hsla(69, 74%, 73%, 1);
-    padding: 5% 20%;
+    padding: 1% 20%;
 }
 
 main > div {
@@ -202,6 +202,7 @@ main > div:first-child > div {
 
 .receita-box {
     padding: 3% 5%;
+    flex: 1;
 }
 
 .receita-box > div:first-child {
@@ -214,12 +215,15 @@ main > div:first-child > div {
 
 .card-holder {
     display: flex;
+    flex-wrap: wrap;
     gap: 2%;
+    column-gap: 4%;
 }
 
 .sua-receita-card {
     display: flex;
     gap: 4%;
+    margin: 1% 0;
     background-color: var(--primary);
     padding: 1%;
     border-radius: 15px;
@@ -257,11 +261,39 @@ main > div:first-child > div {
     text-align: center;
 }
 
-.receita-salva-card > img{
+.receita-salva-card > img {
     width: 10rem;
     border-radius: 15px 15px 0 0;
 }
 
 .receita-salva-card > div {
     margin: 2% 0;
+}
+
+@media (max-width: 1028px) {
+    #perfil-estatisticas {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 900px) {
+    main > div:first-child {
+        flex-direction: column;
+    }
+
+    main > div:first-child > div {
+        margin: 1% 0;
+    }
+
+    .sua-receita-card {
+        flex: 1;
+    }
+
+    .receita-salva-card {
+        flex: 1;
+    }
+
+    .receita-salva-card > img {
+        width: 100%;
+    }
 }
