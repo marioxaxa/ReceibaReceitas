@@ -1,0 +1,194 @@
+* {
+  margin: 0;
+  padding: 0;
+  --text: #0d0402;
+  --background: #fefcfb;
+  --primary: #de702b;
+  --secondary: #deed87;
+  --accent: #bae65b;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--primary);
+}
+
+header {
+  background-color: var(--text);
+  color: #c4c4c4;
+}
+
+#header-div {
+  margin: 0 20%;
+  padding: 1% 0 1.5% 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-options {
+  font-size: small;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+#header-logo {
+  flex: 1;
+}
+
+.header-options > div {
+  flex: 1;
+}
+
+section {
+  margin: 2.5% 20%;
+}
+
+#nos-mande {
+  background-color: var(--secondary);
+  padding: 4% 8%;
+  border-radius: 15px;
+  font-size: 180%;
+}
+
+#form-receita {
+  background-color: var(--background);
+  border-radius: 15px;
+  margin-top: 3%;
+  padding: 4% 8%;
+  padding-top: 2%;
+}
+
+#nome-receita {
+  display: flex;
+}
+
+#nome-receita > input {
+  width: 100%;
+}
+
+#detalhes-receita {
+  display: flex;
+}
+
+#tempo {
+  width: 60%;
+}
+
+#porções {
+  width: 40%;
+}
+
+#imagem {
+  width: 20%;
+}
+
+#preparo-receita {
+  display: flex;
+  height: 250px;
+}
+
+@media (max-width: 900px) {
+  
+  section {
+    margin: 2.5% 5%;
+  }
+
+  #nos-mande {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  
+  #detalhes-receita {
+      flex-direction: column;
+  
+  }
+
+#detalhes-receita >input {
+  width: auto;
+}
+
+#preparo-receita {
+  flex-direction: column;
+}
+
+#preparo-receita > textarea {
+  width: auto;
+  height: 100%;
+}
+
+}
+
+
+#ingredientes {
+  width: 40%;
+}
+
+#como-fazer {
+  width: 60%;
+}
+
+input {
+  padding: 10px 12px;
+  border: solid 2px black;
+  border-radius: 15px;
+  margin: 2% 1%;
+}
+
+textarea {
+  padding: 10px 12px;
+  border: solid 2px black;
+  border-radius: 15px;
+  margin: 2% 1%;
+}
+
+textarea::-webkit-input-placeholder {
+  color: var(--black);
+  font-size: 15px;
+  font-style: bold;
+  font-family: "DM Sans", sans-serif;
+}
+
+input::-webkit-input-placeholder {
+  color: var(--black);
+  font-size: 15px;
+  font-style: bold;
+}
+
+button {
+  display: flex;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 40px;
+  margin: 0 auto;
+}
+
+footer {
+  background-color: var(--text);
+  color: #c4c4c4;
+}
+
+#footer-div {
+  margin: 0 20%;
+  padding: 1% 0 1.5% 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#footer-sociais {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  gap: 5%;
+}
