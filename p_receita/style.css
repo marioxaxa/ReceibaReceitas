@@ -154,7 +154,9 @@ section > h1 {
     background-color: #fefcfb;
     padding: 5% 5%;
     border-radius: 15px;
-    font-size: 3rem;
+    font-size: 2rem;
+    text-wrap: wrap;
+    
 }
 
 article {
@@ -283,3 +285,28 @@ aside > p {
     text-align: justify;
 }
 
+@media (max-width: 900px) {
+    main {
+        flex-direction: column-reverse;
+    }
+    aside {
+        position: static;
+        top: 0;
+        margin-left: 0;
+        margin: 5% 15%; 
+    }
+}
+
+@media (max-width: 600px) {
+    #food-type{
+        flex-direction: column;
+    }
+
+    #comments-div > div {
+        flex-direction: column-reverse;
+    }
+
+    #comments-div > div > div:last-child {
+        margin-bottom: 2%;
+    }
+}
