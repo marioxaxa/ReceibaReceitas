@@ -1,13 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    --text: #0d0402;
-    --background: #fefcfb;
-    --primary: #de702b;
-    --secondary: #deed87;
-    --accent: #bae65b;
-}
-
 /* Inicio do header */
 header {
     background-color: var(--text);
@@ -37,6 +27,22 @@ header {
 
 .header-options > div {
     flex: 1;
+}
+
+.header-options > div > a {
+    text-decoration: none;
+    color: #c4c4c4;
+}
+
+.header-options > div > a:link {
+    color: #c4c4c4;
+}
+.header-options > div > a:visited {
+    color: #c4c4c4;
+}
+
+.header-options > div > a:hover {
+    color: var(--primary);
 }
 
 input[type="checkbox"] {

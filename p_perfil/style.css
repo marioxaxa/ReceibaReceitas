@@ -42,6 +42,22 @@ header {
     flex: 1;
 }
 
+.header-options > div > a {
+    text-decoration: none;
+    color: #c4c4c4;
+}
+
+.header-options > div > a:link {
+    color: #c4c4c4;
+}
+.header-options > div > a:visited {
+    color: #c4c4c4;
+}
+
+.header-options > div > a:hover {
+    color: var(--primary);
+}
+
 input[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
