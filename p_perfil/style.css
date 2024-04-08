@@ -142,13 +142,14 @@ footer {
 /* Final do footer */
 
 main {
-    background-color: hsla(69, 74%, 73%, 0.6);
+    background-color: hsla(69, 74%, 73%, 1);
     padding: 5% 20%;
 }
 
 main > div {
     background-color: #fefcfb;
     border-radius: 15px;
+    margin-top: 5%;
 }
 
 main > div:first-child {
@@ -197,4 +198,70 @@ main > div:first-child > div {
 
 #perfil-estatisticas > div > p {
     font-size: xx-large;
+}
+
+.receita-box {
+    padding: 3% 5%;
+}
+
+.receita-box > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 30%;
+    margin-bottom: 2%;
+}
+
+.card-holder {
+    display: flex;
+    gap: 2%;
+}
+
+.sua-receita-card {
+    display: flex;
+    gap: 4%;
+    background-color: var(--primary);
+    padding: 1%;
+    border-radius: 15px;
+}
+
+.sua-receita-card > img {
+    width: 5.5rem;
+    height: 5.5rem;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.sua-receita-card > div {
+    text-align: center;
+    text-wrap: pretty;
+}
+
+.amei-comment {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.amei-comment > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.receita-salva-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primary);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.receita-salva-card > img{
+    width: 10rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.receita-salva-card > div {
+    margin: 2% 0;
 }
