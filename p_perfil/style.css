@@ -143,7 +143,7 @@ footer {
 
 main {
     background-color: hsla(69, 74%, 73%, 1);
-    padding: 1% 20%;
+    padding: 1% 10%;
 }
 
 main > div {
@@ -203,6 +203,7 @@ main > div:first-child > div {
 .receita-box {
     padding: 3% 5%;
     flex: 1;
+    margin: 2% 0;
 }
 
 .receita-box > div:first-child {
@@ -227,6 +228,8 @@ main > div:first-child > div {
     background-color: var(--primary);
     padding: 1%;
     border-radius: 15px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .sua-receita-card > img {
@@ -239,6 +242,7 @@ main > div:first-child > div {
 .sua-receita-card > div {
     text-align: center;
     text-wrap: pretty;
+    justify-items: right;
 }
 
 .amei-comment {
@@ -287,6 +291,12 @@ main > div:first-child > div {
 
     .sua-receita-card {
         flex: 1;
+        flex-direction: column;
+    }
+
+    .sua-receita-card > img {
+        width: 100%;
+        height: auto;
     }
 
     .receita-salva-card {
