@@ -143,7 +143,7 @@ footer {
 
 main {
     background-color: hsla(69, 74%, 73%, 1);
-    padding: 1% 10%;
+    padding: 1% 20%;
 }
 
 main > div {
@@ -281,6 +281,11 @@ main > div:first-child > div {
 }
 
 @media (max-width: 900px) {
+
+    main {
+        padding: 1% 5%;
+    }
+
     main > div:first-child {
         flex-direction: column;
     }
