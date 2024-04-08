@@ -198,6 +198,12 @@ article > img {
     text-align: justify;
 }
 
+article>sub{
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
 #ingredientes-div > ul {
     list-style: circle;
     padding-left: 6%;
@@ -275,6 +281,7 @@ aside > h2 {
 }
 aside > img {
     width: 100%;
+    border-radius: 15px;
 }
 
 aside > h2 {
