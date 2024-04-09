@@ -161,7 +161,7 @@ input[type="checkbox"] {
 
 .conteudo {
   width: 35%;
-  margin: 10% 55%;
+  margin: 10% 55% 25% 55%;
   color: var(--background);
 }
 
@@ -256,3 +256,4 @@ footer {
     gap: 20%;
   }
 }
+
