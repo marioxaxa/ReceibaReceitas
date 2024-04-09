@@ -64,7 +64,7 @@ header {
     color: var(--primary);
 }
 
-input[type="checkbox"] {
+input#menu-bars[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
     appearance: none;
