@@ -334,3 +334,17 @@ aside > p {
         margin-bottom: 2%;
     }
 }
+
+@media (max-width: 900px) {
+     
+    #footer-div{
+    margin: 0 10%;
+    }
+    }
+
+    @media (max-width: 650px) {
+     
+        #footer-div{
+        gap: 20%;
+        }
+        }
