@@ -60,7 +60,7 @@ header {
     color: var(--primary);
 }
 
-input[type="checkbox"] {
+input#menu-bars[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
     appearance: none;
@@ -212,7 +212,7 @@ section {
     width: 60%;
 }
 
-input {
+input[type="text"] {
     padding: 10px 12px;
     border: solid 2px black;
     border-radius: 15px;
