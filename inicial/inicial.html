@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/inicial.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/inicial.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="imgs">
-      <img class="cozinheiros" src="img/cozinheiros.png" alt="">
-      <img class="vetor1" src="img/vetor1.png" alt="">
-      <img class="vetor2" src="img/vetor2.png" alt="">
+      <img class="cozinheiros position-absolute" src="img/cozinheiros.png" alt="">
+      <img class="vetor1 position-absolute" src="img/vetor1.png" alt="">
+      <img class="vetor2 position-absolute" src="img/vetor2.png" alt="">
     </div>
 
     <div class="conteudo">
-        <p>Nossas receitas mais perto de você</p>
-        <h1>IMPRESSIONE SEUS AMIGOS!</h1>
-        <p>Acesse nosso site e descubra novas receitas para inovar seus pratos, tudo que você precisa para aprender a fazer refeições, sobremesas, drinks e muito mais, está aqui.</p>
-        <button><h2>Descobrir</h2><img src="img/icone.png" alt=""></button>
+        <p class="fw-bolder">Nossas receitas mais perto de você</p>
+        <h1 class="mb-2">IMPRESSIONE SEUS AMIGOS!</h1>
+        <p class="fw-bolder mb-4">Acesse nosso site e descubra novas receitas para inovar seus pratos, tudo que você precisa para aprender a fazer refeições, sobremesas, drinks e muito mais, está aqui.</p>
+        <button class="d-flex align-items-center text-center border-0 mt-4 rounded"><h3>Descobrir</h3><img src="img/icone.png" class="ml-2" alt=""></button>
     </div>
 
     <footer>
@@ -128,6 +129,10 @@
           </div>
           <div id="footer-copyright">Copyright © 2024. All rights are reserved</div>
         </div>
-      </footer>      
+      </footer>  
+      
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
