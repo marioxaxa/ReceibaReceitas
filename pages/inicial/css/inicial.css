@@ -1,12 +1,17 @@
 * {
-  --brown: #905936;
-  --verde_claro: #deed87;
-  --white: #fefcfb;
-  --black: #424242;
-  --verde: #bae65b;
-  --text: #0d0402;
   margin: 0;
   padding: 0;
+  --text: #0d0402;
+  --background: #fefcfb;
+  --primary: #de702b;
+  --secondary: #deed87;
+  --accent: #bae65b;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: #9fa86b;
+  overflow-x: hidden;
 }
 
 /* Inicio do header */
@@ -123,117 +128,94 @@ input[type="checkbox"] {
 
 /* Final do header */
 
-body {
-  background-color: var(--brown);
-  font-family: "DM Sans", sans-serif;
+.cozinheiros {
+  z-index: -1;
+  width: 60%;
+  position: absolute;
+  top: 20%;
+  bottom: 20%;
+  left: -5%;
 }
 
-.container {
-  padding: 5% 10%;
-  justify-content: space-evenly;
+.vetor1 {
+  width: 70%;
+  position: absolute;
+  top: 15%;
+  left: -20%;
+  z-index: -2;
 }
 
-.card {
-  width: 300px;
-  text-align: center;
+.vetor2 {
+  width: 70%;
+  position: absolute;
+  right: -20%;
+  top: 50%;
+  bottom: 50%;
+  z-index: -2;
+  max-width: 100%;
 }
 
-#conectese {
-  background-color: var(--verde_claro);
-  border-radius: 15px 15px 0 0;
-  padding: 10px;
+.imgs {
+  width: 100%;
 }
+
+.conteudo {
+  width: 35%;
+  margin: 10% 55% 25% 55%;
+  color: var(--background);
+}
+
 h1 {
-  margin: 0;
-  font-size: 30px;
-}
-.form {
-  padding: 10px 0 50px 0;
-  background-color: var(--white);
-  text-align: center;
-  border-radius: 0 0 15px 15px;
+  margin-bottom: 10px;
+  color: var(--accent);
 }
 
-.form input {
-  display: block;
-  margin: 30px auto;
-  border: solid 2px var(--black);
-  border-radius: 15px;
-  padding: 10px 12px;
-}
-
-input::-webkit-input-placeholder {
-  color: var(--black);
-  font-size: 15px;
-  font-style: bold;
+p {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 2px;
 }
 
 button {
-  background-color: var(--verde);
+  display: flex;
+  text-align: center;
   border: none;
-  border-radius: 5px;
-  padding: 10px 40px;
+  margin-top: 25px;
+  color: var(--background);
+  background-color: var(--accent);
+  padding: 8px 8px 8px 15px;
+  border-radius: 30px;
 }
 
-a {
-  text-decoration: none;
-  color: var(--text);
+button img {
+  margin: auto 0px auto 8px;
+  width: 30px;
 }
 
-button h6 {
-  margin: 0;
-  font-size: 15px;
-}
-
-.senha {
-  background-image: url("../img/eye-solid.svg");
-  background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: calc(100% - 10px) center;
+button h2 {
+  margin: auto 0px auto 0px;
 }
 
 button:hover {
   cursor: pointer;
 }
 
-@media (min-width: 900px) {
-  .container {
-    display: flex;
-  }
-}
-
-@media (max-width: 900px) {
-  h1 {
-    font-size: 1.5em;
+@media (max-width: 840px) {
+  .cozinheiros {
+    display: none;
   }
 
-  .container {
-    padding: 5% 5%;
-  }
-
-  .card {
-    margin: 0 auto 50px auto;
-    width: 50%;
-    font: 1em;
-  }
-
-  button {
-    background-color: var(--verde);
-    border: none;
-    border-radius: 5px;
-    padding: 10px 40px;
-  }
-}
-
-@media (max-width: 520px) {
-  .card {
-    margin: 0 auto 50px auto;
+  .conteudo {
+    position: relative;
     width: 80%;
-    font: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50%;
   }
 
-  .form input {
-    width: 60%;
+  .vetor2 {
+    top: 40%;
+    bottom: 20%;
   }
 }
 
@@ -275,3 +257,4 @@ footer {
     gap: 20%;
   }
 }
+
