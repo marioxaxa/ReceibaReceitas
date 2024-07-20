@@ -1,7 +1,7 @@
 // Importar as funções necessárias dos SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -19,12 +19,31 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// Função para verificar se e-mail ou nome de usuário já estão em uso
+async function isUserAlreadyExists(email, usuario) {
+  const emailQuery = query(collection(db, "usuarios"), where("email", "==", email));
+  const usuarioQuery = query(collection(db, "usuarios"), where("usuario", "==", usuario));
+
+  const [emailSnapshot, usuarioSnapshot] = await Promise.all([
+    getDocs(emailQuery),
+    getDocs(usuarioQuery)
+  ]);
+
+  return !emailSnapshot.empty || !usuarioSnapshot.empty;
+}
+
 // Adicionar evento para o botão de registro
 document.getElementById('btnRegistrar').addEventListener('click', async (e) => {
   e.preventDefault();
   const login = document.getElementById('loginRegistro').value;
   const email = document.getElementById('emailRegistro').value;
   const senha = document.getElementById('senha2').value;
+
+  // Verificar se o e-mail ou nome de usuário já estão em uso
+  if (await isUserAlreadyExists(email, login)) {
+    alert('E-mail ou nome de usuário já está em uso.');
+    return;
+  }
 
   try {
     await addDoc(collection(db, "usuarios"), {
