@@ -96,7 +96,7 @@
         <div id="form-receita">
           <form action="">
             <div class="mb-1 row">
-              <div class="mb-3 col-8">
+              <div class="mb-0 col-8">
                 <label for="exampleFormControlInput1" class="form-label"
                   >Nome da Receita</label
                 >
@@ -107,7 +107,7 @@
                   placeholder=""
                 />
               </div>
-              <div class="mb-3 col">
+              <div class="mb-0 col">
                 <label for="exampleFormControlInput1" class="form-label mb-6"
                   >Tipo</label
                 >
@@ -127,6 +127,15 @@
                   <option value="8">Sobremesa</option>
                   <option value="9">Sopa</option>
                 </select>
+              </div>
+            </div>
+            <div class="mb-1 row">
+              <div class="mb-3 col-8">
+                <p id="erro_nome" class="error"></p>
+              </div>
+
+              <div class="mb-3 col">
+                <p id="erro_tipo" class="error"></p>
               </div>
             </div>
             <div id="detalhes-receita" class="row">
@@ -163,8 +172,21 @@
                 />
               </div>
             </div>
+            <div class="mb-1 row">
+              <div class=" col">
+                <p id="erro_tempo" class="error"></p>
+              </div>
+
+              <div class=" col">
+                <p id="erro_porção" class="error"></p>
+              </div>
+
+              <div class=" col">
+                <p id="erro_imagem" class="error"></p>
+              </div>
+            </div>
             <div id="preparo-receita" class="row">
-              <div class="mb-3 col-4">
+              <div class=" col-4">
                 <label for="exampleFormControlTextarea1" class="form-label"
                   >Ingredientes</label
                 >
@@ -174,7 +196,7 @@
                   rows="7"
                 ></textarea>
               </div>
-              <div class="mb-3 col-8">
+              <div class=" col-8">
                 <label for="exampleFormControlTextarea1" class="form-label"
                   >Como fazer</label
                 >
@@ -185,13 +207,28 @@
                 ></textarea>
               </div>
             </div>
-            <button
+            <div class="row">
+              <div class="col-4">
+                <p id="erro_ingredientes" class="error"></p>
+              </div>
+
+              <div class="col-8">
+                <p id="erro_como_fazer" class="error"></p>
+              </div>
+              </div>
+
+              <button
               type="button"
               class="btn btn-success d-flex align-items-center m-auto"
               onclick="criar_receita()"
             >
               Enviar
             </button>
+
+            <p id="receita_enviada" class="text-center"></p>
+
+            </div>
+            
           </form>
         </div>
       </section>

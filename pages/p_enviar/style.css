@@ -160,7 +160,9 @@ section {
 }
 
 
-
+.error {
+            color: red;
+        }
 
 
 #preparo-receita {
