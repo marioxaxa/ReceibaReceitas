@@ -1,4 +1,4 @@
-import '../style.css'
+import "../style.css";
 
 import getCookie from "../../../src/utils/getCookie";
 
@@ -30,23 +30,44 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const userCookie = getCookie("userid")
+const userCookie = getCookie("userid");
 
-console.log(userCookie)
-
-const testQuery = query(
+const userQuery = query(
     collection(db, "usuarios"),
-    where('__name__', '==', userCookie)
+    where("__name__", "==", userCookie)
 );
 
-var userData = null
+var userData = null;
 
-const testSnapshot = await getDocs(testQuery);
-testSnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
-    userData = doc.data()
+const userSnapshot = await getDocs(userQuery);
+userSnapshot.forEach((doc) => {
+    userData = doc.data();
 });
 
 const h1username = document.querySelector("#h1-username");
 
-h1username.innerHTML = userData.usuario
+h1username.innerHTML = userData.usuario;
+
+const receitasQuery = query(
+    collection(db, "receitas"),
+    where("usuario", "==", userCookie)
+);
+
+var receitasDoUser = [];
+
+const receitaSnapshot = await getDocs(receitasQuery);
+receitaSnapshot.forEach((doc) => {
+    receitasDoUser.push(doc.data());
+});
+
+const pReceitas = document.querySelector('#p-receitas')
+pReceitas.innerHTML= receitasDoUser.length
+
+const pCurtidas = document.querySelector('#p-curtidas')
+
+var curtidas = 0
+receitasDoUser.forEach((receita) => {
+    curtidas += receita.curtidas
+})
+
+pCurtidas.innerHTML = curtidas
