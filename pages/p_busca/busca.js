@@ -1,31 +1,29 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    query,
-    where,
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyAqfNOpVNGAzorp5_0tuaI1QDd0WDZXqSo",
-    authDomain: "receibareceitas.firebaseapp.com",
-    projectId: "receibareceitas",
-    storageBucket: "receibareceitas.appspot.com",
-    messagingSenderId: "21963335608",
-    appId: "1:21963335608:web:7437d657904cda9c13d14d",
-    measurementId: "G-TTF55ZV2K0",
+  apiKey: "AIzaSyAqfNOpVNGAzorp5_0tuaI1QDd0WDZXqSo",
+  authDomain: "receibareceitas.firebaseapp.com",
+  projectId: "receibareceitas",
+  storageBucket: "receibareceitas.appspot.com",
+  messagingSenderId: "21963335608",
+  appId: "1:21963335608:web:7437d657904cda9c13d14d",
+  measurementId: "G-TTF55ZV2K0",
 };
 
 // Inicializar o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-
-console.log("Teste1");
 
 const testQuery = query(collection(db, "receitas"));
 
@@ -110,4 +108,41 @@ receitas_armazenadas.forEach((receita) => {
   suasReceitas.appendChild(newChild);
 });
 
-console.log("Teste2");
+function resetarLista() {
+  document.querySelectorAll(".receita").remove();
+}
+
+const selectedTypes = [];
+
+document.querySelectorAll(".checkbox-tipo").forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    if (
+      selectedTypes.some((type) => {
+        return type == checkbox.getAttribute("name");
+      })
+    ) {
+      console.log("removido");
+    } else {
+      selectedTypes.push(checkbox.getAttribute("name"));
+      console.log("adicionado");
+    }
+  });
+});
+
+let valorpesquisado = "";
+
+const pesquisado = document.getElementById("pesquisar-input");
+
+function atualizarPesquisa(event) {
+  valorpesquisado = event.target.value;
+  console.log(valorpesquisado);
+}
+pesquisado.addEventListener("input", (event) => {
+  atualizarPesquisa(event);
+});
+
+var objetos = {}
+
+var objfiltrados = objetos.filter((receita) => {receita.name.includes(valorpesquisado)})
+
+console.log(objfiltradossquisado);
