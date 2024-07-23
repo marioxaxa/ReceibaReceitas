@@ -85,8 +85,9 @@ document.getElementById("btnLogar").addEventListener("click", async (e) => {
         querySnapshot.forEach((doc) => {
             if (email === doc.data().email) {
                 if (senha === doc.data().senha) {
-                    
+            
 setCookie('userid', doc.id, 1);
+
                     alert("Logado com sucesso");
                     window.location.href = "../p_perfil/p_perfil.html";
                 } else {

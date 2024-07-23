@@ -30,19 +30,19 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const userCookie = getCookie("usuario")
+const userCookie = getCookie("userid")
 
 console.log(userCookie)
 
-const emailQuery = query(
+const testQuery = query(
     collection(db, "usuarios"),
-    where('usuario', '==', userCookie)
+    where('__name__', '==', userCookie)
 );
 
 var userData = null
 
-const querySnapshot = await getDocs(emailQuery);
-querySnapshot.forEach((doc) => {
+const testSnapshot = await getDocs(testQuery);
+testSnapshot.forEach((doc) => {
     console.log(doc.id, " => ", doc.data());
     userData = doc.data()
 });

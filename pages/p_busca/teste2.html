@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar/Esconder Textos</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mostrar/Esconder Textos com Checkboxes</h1>
+    
+    <label>
+        <input type="checkbox" id="checkbox1" onclick="toggleText('text1')">
+        Mostrar Texto 1
+    </label>
+    <div id="text1" class="hidden">
+        Este é o Texto 1.
+    </div>
+
+    <label>
+        <input type="checkbox" id="checkbox2" onclick="toggleText('text2')">
+        Mostrar Texto 2
+    </label>
+    <div id="text2" class="hidden">
+        Este é o Texto 2.
+    </div>
+
+    <label>
+        <input type="checkbox" id="checkbox3" onclick="toggleText('text3')">
+        Mostrar Texto 3
+    </label>
+    <div id="text3" class="hidden">
+        Este é o Texto 3.
+    </div>
+
+    <script>
+        function toggleText(textId) {
+            var textElement = document.getElementById(textId);
+            textElement.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
