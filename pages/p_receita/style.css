@@ -72,6 +72,74 @@ input[type="checkbox"] {
     display: none;
 }
 
+/* Container de comentário */
+#comment-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Input de comentário */
+#comment-input {
+    flex: 1;
+    margin-right: 8px;
+}
+
+/* Lista de comentários */
+#comentarios-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card de comentário */
+.comment-card {
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+/* Texto do card */
+.card-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left; /* Garante que o texto do comentário esteja alinhado à esquerda */
+}
+
+/* Botão de enviar */
+#comment-submit {
+    margin-left: 20px;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#comment-submit:hover {
+    padding: 14px 31px;
+}
+
+/* Botão de remover comentário */
+.remover-comentario {
+    background-color: #e57373;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center; /* Garante que o texto no botão esteja centralizado */
+}
+
 @media (max-width: 600px) {
     #header-logo {
         display: none;
@@ -245,7 +313,7 @@ article > sub {
     gap: 2%;
 }
 
-#comments-div > div > div > div {
+#salvar-div, #amei-div {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -258,7 +326,7 @@ article > sub {
     cursor: pointer;
 }
 
-#comments-div > div > div > div:hover {
+#salvar-div:hover, #amei-div:hover {
     border: dashed 1.5px color-mix(in srgb, var(--primary) 80%, white);
     color: color-mix(in srgb, var(--primary) 80%, white);
 }
