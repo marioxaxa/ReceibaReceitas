@@ -182,7 +182,13 @@ section {
 
 
    
- 
+  .error {
+    color: red;
+}
+
+#receita_enviada {
+    color: green;
+}
   
 
   #preparo-receita > textarea {
