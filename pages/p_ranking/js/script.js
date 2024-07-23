@@ -62,7 +62,7 @@ async function fetchAndDisplayTopRecipes() {
 
             const imgElement = document.createElement("img");
             imgElement.src = url;
-            imgElement.className = "card-img-top";
+            imgElement.className = "card-img-top  img-rnk";
             imgElement.alt = receita.nome;
 
             const cardBodyDiv = document.createElement("div");
