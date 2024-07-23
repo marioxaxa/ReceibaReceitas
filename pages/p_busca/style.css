@@ -10,6 +10,8 @@
   --tertiary: #bae65b;
 }
 
+
+
 body {
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
@@ -100,6 +102,16 @@ input#menu-bars[type="checkbox"] {
     justify-content: space-between;
     align-items: center;
   }
+
+  .receita a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: white; /* Define a cor do texto como branco */
+  }
+
+  a {
+    text-decoration: none;
+    color: black; /* ou a cor que você deseja */
+}
 
   input#menu-bars[type="checkbox"] {
     appearance: none;
