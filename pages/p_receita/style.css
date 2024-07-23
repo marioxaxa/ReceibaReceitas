@@ -104,6 +104,11 @@ input[type="checkbox"] {
     text-align: left; /* Alinha o texto à esquerda */
 }
 
+.card-user {
+    font-size: 14px;
+    color: #555;
+}
+
 /* Texto do card */
 .card-text {
     font-size: 16px;

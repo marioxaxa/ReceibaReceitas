@@ -10,6 +10,7 @@ import {
     where,
     deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -28,6 +29,7 @@ if (!getApps().length) {
 }
 
 const db = getFirestore();
+const auth = getAuth();
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -113,9 +115,10 @@ async function init() {
         async function adicionarComentario() {
             const comentarioInput = document.querySelector("#comment-input");
             const comentarioTexto = comentarioInput.value.trim();
+            const usuarioId = getCookie("userid"); // Supondo que você armazena o ID do usuário em um cookie
 
-            if (comentarioTexto === "") {
-                alert("Digite um comentário.");
+            if (comentarioTexto === "" || !usuarioId) {
+                alert("Digite um comentário e certifique-se de que está logado.");
                 return;
             }
 
@@ -124,12 +127,12 @@ async function init() {
                 await addDoc(comentariosRef, {
                     texto: comentarioTexto,
                     receitaId: receitaSelecionada.id,
+                    usuarioId: usuarioId,
                     timestamp: new Date()
                 });
                 comentarioInput.value = ""; // Limpar o campo de comentário
                 alert("Comentário adicionado!");
-                // Opcional: Atualizar a lista de comentários
-                carregarComentarios();
+                carregarComentarios(); // Atualizar a lista de comentários
             } catch (error) {
                 console.error("Erro ao adicionar comentário: ", error);
                 alert("Erro ao adicionar comentário.");
@@ -149,24 +152,37 @@ async function init() {
                 collection(db, "comentarios"),
                 where("receitaId", "==", receitaSelecionada.id)
             );
-        
+
             const comentariosSnapshot = await getDocs(comentariosQuery);
             const comentariosList = document.getElementById("comentarios-list");
             comentariosList.innerHTML = ""; // Limpa a lista de comentários
-        
-            comentariosSnapshot.forEach((doc) => {
+
+            for (const doc of comentariosSnapshot.docs) {
                 const comentario = doc.data();
+                const usuarioQuery = query(
+                    collection(db, "usuarios"),
+                    where("__name__", "==", comentario.usuarioId)
+                );
+
+                const usuarioSnapshot = await getDocs(usuarioQuery);
+                let usuarioNome = "Desconhecido";
+
+                usuarioSnapshot.forEach(userDoc => {
+                    usuarioNome = userDoc.data().nome || "Desconhecido"; // Supondo que você armazena o nome do usuário
+                });
+
                 const comentarioDiv = document.createElement("div");
                 comentarioDiv.className = "comment-card"; // Adiciona a classe de estilo
                 comentarioDiv.innerHTML = `
                     <div class="card-body">
+                        <p class="card-user">Comentado por: ${usuarioNome}</p>
                         <p class="card-text">${comentario.texto}</p>
                         <button class="remover-comentario" data-id="${doc.id}">Remover</button>
                     </div>
                 `;
                 comentariosList.appendChild(comentarioDiv);
-            });
-        
+            }
+
             // Adiciona o evento de remover para cada botão
             document.querySelectorAll(".remover-comentario").forEach(button => {
                 button.addEventListener("click", (e) => {
