@@ -22,6 +22,8 @@ const auth = getAuth(app);
 
 
 
+
+
 async function criar_receita() {
     var input1 = document.getElementById('nome_receita').value;
     var input2 = document.getElementById('tipo').value;
