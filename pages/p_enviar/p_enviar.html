@@ -124,8 +124,8 @@
                   <option value="Lanche">Lanche</option>
                   <option value="Massa">Massa</option>
                   <option value="Salada">Salada</option>
-                  <option value="8">Sobremesa</option>
-                  <option value="9">Sopa</option>
+                  <option value="Sobremesa">Sobremesa</option>
+                  <option value="Sopa">Sopa</option>
                 </select>
               </div>
             </div>
@@ -173,20 +173,20 @@
               </div>
             </div>
             <div class="mb-1 row">
-              <div class=" col">
+              <div class="col">
                 <p id="erro_tempo" class="error"></p>
               </div>
 
-              <div class=" col">
+              <div class="col">
                 <p id="erro_porção" class="error"></p>
               </div>
 
-              <div class=" col">
+              <div class="col">
                 <p id="erro_imagem" class="error"></p>
               </div>
             </div>
             <div id="preparo-receita" class="row">
-              <div class=" col-4">
+              <div class="col-4">
                 <label for="exampleFormControlTextarea1" class="form-label"
                   >Ingredientes</label
                 >
@@ -196,7 +196,7 @@
                   rows="7"
                 ></textarea>
               </div>
-              <div class=" col-8">
+              <div class="col-8">
                 <label for="exampleFormControlTextarea1" class="form-label"
                   >Como fazer</label
                 >
@@ -215,20 +215,18 @@
               <div class="col-8">
                 <p id="erro_como_fazer" class="error"></p>
               </div>
-              </div>
+            </div>
 
-              <button
+            <button
+            id="botão_enviar_receita"
               type="button"
               class="btn btn-success d-flex align-items-center m-auto"
-              onclick="criar_receita()"
+        
             >
               Enviar
             </button>
 
             <p id="receita_enviada" class="text-center"></p>
-
-            </div>
-            
           </form>
         </div>
       </section>
@@ -342,6 +340,11 @@
       </div>
     </footer>
 
-    <script src="enviar.js" />
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="enviar.js"></script>
   </body>
 </html>

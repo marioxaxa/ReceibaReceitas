@@ -29,6 +29,22 @@
             href="/public/favicon/favicon-16x16.png"
         />
         <link rel="manifest" href="/public/favicon/site.webmanifest" />
+        <style>
+         
+            a {
+                text-decoration: none;
+                color: #0d0402;
+            }
+    
+            a:link {
+                color: #0d0402;
+            }
+    
+            a:visited {
+                color: #0d0402;
+            }
+    
+        </style>
     </head>
     <body>
         <header>
@@ -64,7 +80,6 @@
                     /></a>
                 </div>
                 <div class="header-options">
-                    <div><a href="../login/login.html">Perfil</a></div>
                     <div>
                         <a href="../p_busca/p_busca.html">
                             <svg
@@ -81,10 +96,26 @@
                             </svg>
                         </a>
                     </div>
+                    <div>
+                        <a href="../login/login.html"
+                            ><svg
+                                width="40"
+                                height="40"
+                                viewBox="0 0 101 100"
+                                fill="white"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M50.5 0C22.624 0 0 22.4 0 50C0 77.6 22.624 100 50.5 100C78.376 100 101 77.6 101 50C101 22.4 78.376 0 50.5 0ZM50.5 20C60.2465 20 68.175 27.85 68.175 37.5C68.175 47.15 60.2465 55 50.5 55C40.7535 55 32.825 47.15 32.825 37.5C32.825 27.85 40.7535 20 50.5 20ZM50.5 90C40.2485 90 28.1285 85.9 19.493 75.6C28.0275 69 38.784 65 50.5 65C62.216 65 72.9725 69 81.507 75.6C72.8715 85.9 60.7515 90 50.5 90Z"
+                                    fill="#F3FAFE"
+                                />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </header>
-        <main>
+        <main id="main-perfil">
             <div>
                 <div id="perfil-foto">
                     <svg
@@ -99,7 +130,7 @@
                             fill="black"
                         />
                     </svg>
-                    <h1>Joelson</h1>
+                    <h1 id="h1-username">Username</h1>
                 </div>
                 <div id="perfil-estatisticas">
                     <div>
@@ -129,36 +160,7 @@
                             </svg>
                             <h3>Receitas</h3>
                         </div>
-                        <p>10</p>
-                    </div>
-                    <div>
-                        <div>
-                            <svg
-                                width="27"
-                                height="26"
-                                viewBox="0 0 27 26"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <g clip-path="url(#clip0_15_377)">
-                                    <path
-                                        d="M24.7388 4.33332C24.7388 3.14166 23.7375 2.16666 22.5 2.16666H4.5C3.2625 2.16666 2.25 3.14166 2.25 4.33332V17.3333C2.25 18.525 3.2625 19.5 4.5 19.5H20.25L24.75 23.8333L24.7388 4.33332ZM20.25 15.1667H6.75V13H20.25V15.1667ZM20.25 11.9167H6.75V9.74999H20.25V11.9167ZM20.25 8.66666H6.75V6.49999H20.25V8.66666Z"
-                                        fill="#DE702B"
-                                    />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_15_377">
-                                        <rect
-                                            width="27"
-                                            height="26"
-                                            fill="white"
-                                        />
-                                    </clipPath>
-                                </defs>
-                            </svg>
-                            <h3>Comentários</h3>
-                        </div>
-                        <p>37</p>
+                        <p id="p-receitas" >0</p>
                     </div>
                     <div>
                         <div>
@@ -176,7 +178,7 @@
                             </svg>
                             <h3>Ameis</h3>
                         </div>
-                        <p>442</p>
+                        <p id="p-curtidas">0</p>
                     </div>
                 </div>
             </div>
@@ -203,139 +205,7 @@
                     </svg>
                     <h3>Suas Receitas</h3>
                 </div>
-                <div class="card-holder">
-                    <a href="../p_receita/p_receita.html">
-                        <div class="sua-receita-card">
-                            <img
-                                src="../public/imagens/torta-placeholder.png"
-                                alt=""
-                            />
-                            <div>
-                                <h4>Torta de frutas</h4>
-                                <p>19/06/2023</p>
-                                <div class="amei-comment">
-                                    <div>
-                                        <svg
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 20 20"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g clip-path="url(#clip0_15_503)">
-                                                <path
-                                                    d="M11.4105 17.6917L10.2021 16.5917C5.91048 12.7 3.07715 10.1333 3.07715 6.98333C3.07715 4.41667 5.09382 2.4 7.66048 2.4C9.11048 2.4 10.5021 3.075 11.4105 4.14167C12.3188 3.075 13.7105 2.4 15.1605 2.4C17.7271 2.4 19.7438 4.41667 19.7438 6.98333C19.7438 10.1333 16.9105 12.7 12.6188 16.6L11.4105 17.6917Z"
-                                                    fill="black"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_15_503">
-                                                    <rect
-                                                        width="20"
-                                                        height="20"
-                                                        fill="white"
-                                                    />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>46</p>
-                                    </div>
-                                    <div>
-                                        <svg
-                                            width="20"
-                                            height="18"
-                                            viewBox="0 0 20 18"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g clip-path="url(#clip0_15_507)">
-                                                <path
-                                                    d="M18.3248 3C18.3248 2.175 17.5832 1.5 16.6665 1.5H3.33317C2.4165 1.5 1.6665 2.175 1.6665 3V12C1.6665 12.825 2.4165 13.5 3.33317 13.5H14.9998L18.3332 16.5L18.3248 3ZM14.9998 10.5H4.99984V9H14.9998V10.5ZM14.9998 8.25H4.99984V6.75H14.9998V8.25ZM14.9998 6H4.99984V4.5H14.9998V6Z"
-                                                    fill="black"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_15_507">
-                                                    <rect
-                                                        width="20"
-                                                        height="18"
-                                                        fill="white"
-                                                    />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>23</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="../p_receita/p_receita.html">
-                        <div class="sua-receita-card">
-                            <img
-                                src="../public/imagens/perudenatal.webp"
-                                alt=""
-                            />
-                            <div>
-                                <h4>Peru natalino</h4>
-                                <p>22/12/2023</p>
-                                <div class="amei-comment">
-                                    <div>
-                                        <svg
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 20 20"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g clip-path="url(#clip0_15_503)">
-                                                <path
-                                                    d="M11.4105 17.6917L10.2021 16.5917C5.91048 12.7 3.07715 10.1333 3.07715 6.98333C3.07715 4.41667 5.09382 2.4 7.66048 2.4C9.11048 2.4 10.5021 3.075 11.4105 4.14167C12.3188 3.075 13.7105 2.4 15.1605 2.4C17.7271 2.4 19.7438 4.41667 19.7438 6.98333C19.7438 10.1333 16.9105 12.7 12.6188 16.6L11.4105 17.6917Z"
-                                                    fill="black"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_15_503">
-                                                    <rect
-                                                        width="20"
-                                                        height="20"
-                                                        fill="white"
-                                                    />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>23</p>
-                                    </div>
-                                    <div>
-                                        <svg
-                                            width="20"
-                                            height="18"
-                                            viewBox="0 0 20 18"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <g clip-path="url(#clip0_15_507)">
-                                                <path
-                                                    d="M18.3248 3C18.3248 2.175 17.5832 1.5 16.6665 1.5H3.33317C2.4165 1.5 1.6665 2.175 1.6665 3V12C1.6665 12.825 2.4165 13.5 3.33317 13.5H14.9998L18.3332 16.5L18.3248 3ZM14.9998 10.5H4.99984V9H14.9998V10.5ZM14.9998 8.25H4.99984V6.75H14.9998V8.25ZM14.9998 6H4.99984V4.5H14.9998V6Z"
-                                                    fill="black"
-                                                />
-                                            </g>
-                                            <defs>
-                                                <clipPath id="clip0_15_507">
-                                                    <rect
-                                                        width="20"
-                                                        height="18"
-                                                        fill="white"
-                                                    />
-                                                </clipPath>
-                                            </defs>
-                                        </svg>
-                                        <p>11</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+                <div class="card-holder" id="suas-receitas-card">
                 </div>
             </div>
             <div class="receita-box">
@@ -392,32 +262,6 @@
                                         </defs>
                                     </svg>
                                     <p>134</p>
-                                </div>
-                                <div>
-                                    <svg
-                                        width="20"
-                                        height="18"
-                                        viewBox="0 0 20 18"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g clip-path="url(#clip0_15_507)">
-                                            <path
-                                                d="M18.3248 3C18.3248 2.175 17.5832 1.5 16.6665 1.5H3.33317C2.4165 1.5 1.6665 2.175 1.6665 3V12C1.6665 12.825 2.4165 13.5 3.33317 13.5H14.9998L18.3332 16.5L18.3248 3ZM14.9998 10.5H4.99984V9H14.9998V10.5ZM14.9998 8.25H4.99984V6.75H14.9998V8.25ZM14.9998 6H4.99984V4.5H14.9998V6Z"
-                                                fill="black"
-                                            />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip0_15_507">
-                                                <rect
-                                                    width="20"
-                                                    height="18"
-                                                    fill="white"
-                                                />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                    <p>57</p>
                                 </div>
                             </div>
                         </div>
@@ -534,4 +378,6 @@
             </div>
         </footer>
     </body>
+    <script type="module" src="script/perfilCoinainer.js"></script>
+    <script type="module" src="script/suasreceitas.js"></script>
 </html>
