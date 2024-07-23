@@ -37,15 +37,16 @@ var receitasDoUser = [];
 
 const testSnapshot = await getDocs(testQuery);
 testSnapshot.forEach((doc) => {
-    receitasDoUser.push(doc.data());
+    const obj = doc.data()
+    obj.id = doc.id
+    receitasDoUser.push(obj);
 });
 
 
 const suasReceitas = document.querySelector("#suas-receitas-card");
 receitasDoUser.forEach((receita) => {
     const newChild = document.createElement("a");
-
-    newChild.innerHTML = `<a color href="../p_receita/p_receita.html" >
+    newChild.innerHTML = `<a href="../p_receita/p_receita.html" id=${receita.id}>
                             <div class="sua-receita-card">
                                 <img
                                     src="../public/imagens/torta-placeholder.png"
@@ -85,5 +86,11 @@ receitasDoUser.forEach((receita) => {
                             </div>
                         </a>`;
 
+    newChild.addEventListener('click', () => {
+        document.cookie = "receita="+receita.id+";path=/";
+    })
+
     suasReceitas.appendChild(newChild);
+
+
 });
