@@ -3,6 +3,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import getUserData from "../../../src/utils/getUser";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -20,9 +21,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-
-
-
+console.log(getUserData())
 
 async function criar_receita() {
     var input1 = document.getElementById('nome_receita').value;
@@ -100,7 +99,8 @@ async function criar_receita() {
             porcoes: input4,
             imagemReceita: input5,
             ingredientes: input6,
-            preparo: input7
+            preparo: input7,
+            curtidas: 0,
         };
 
         try {
