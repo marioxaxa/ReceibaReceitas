@@ -158,7 +158,7 @@ async function criar_receita() {
       ingredientes: input6,
       preparo: input7,
       curtidas: 0,
-      usuário: getCookie('userid'),
+      usuario: getCookie('userid'),
     };
 
     try {
