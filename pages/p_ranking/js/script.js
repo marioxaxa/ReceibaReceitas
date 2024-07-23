@@ -1,8 +1,7 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Sua configuração do Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAqfNOpVNGAzorp5_0tuaI1QDd0WDZXqSo",
   authDomain: "receibareceitas.firebaseapp.com",
@@ -13,7 +12,7 @@ const firebaseConfig = {
   measurementId: "G-KQKYLWV1Z9"
 };
 
-// Initialize Firebase
+// Inicializar o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -27,17 +26,24 @@ async function fetchAndDisplayTopRecipes() {
     
     querySnapshot.forEach((doc) => {
       const receita = doc.data();
+      const receitaId = doc.id;
       
       const colDiv = document.createElement('div');
       colDiv.className = 'col-md-4';
 
       const cardDiv = document.createElement('div');
       cardDiv.className = 'card mb-5';
+      cardDiv.style.cursor = 'pointer';
+      cardDiv.addEventListener('click', () => {
+        const url = new URL("../p_receita/p_receita.html", window.location.href);
+        url.searchParams.set('id', receitaId);
+        window.location.href = url.toString();
+      });
 
       const imgElement = document.createElement('img');
-      imgElement.src = receita.img;
+      imgElement.src = receita.imagemReceita || ''; // Corrigido o nome do campo
       imgElement.className = 'card-img-top';
-      imgElement.alt = receita.nome;
+      imgElement.alt = receita.nome || 'Imagem';
 
       const cardBodyDiv = document.createElement('div');
       cardBodyDiv.className = 'card-body';
@@ -48,7 +54,7 @@ async function fetchAndDisplayTopRecipes() {
 
       const titleH5 = document.createElement('h5');
       titleH5.className = 'card-title';
-      titleH5.textContent = receita.nome;
+      titleH5.textContent = receita.nome || 'Nome não especificado';
 
       const likesP = document.createElement('p');
       likesP.className = 'card-text';
