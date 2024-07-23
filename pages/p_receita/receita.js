@@ -8,10 +8,14 @@ import {
     query,
     where,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+    getStorage,
+    ref,
+    getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 export default function getCookie(cname) {
-    console.log("cookie pego");
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(";");
@@ -41,7 +45,6 @@ const firebaseConfig = {
 // Inicializar o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app);
 
 const receitaCookie = getCookie("receita");
 console.log(receitaCookie);
@@ -67,16 +70,19 @@ document.querySelector("#receita-porcoes").innerHTML =
 
 const lista = document.querySelector("#receita-ingredientes");
 
-const ingredintesArray = receitaSelecionada.ingredientes.replaceAll('\n','').split(',')
+const ingredintesArray = receitaSelecionada.ingredientes
+    .replaceAll("\n", "")
+    .split(",");
 ingredintesArray.forEach((ingrediente) => {
-    const newChild = document.createElement('li')
-    newChild.innerHTML = ingrediente
-    lista.appendChild(newChild)
-})
+    const newChild = document.createElement("li");
+    newChild.innerHTML = ingrediente;
+    lista.appendChild(newChild);
+});
 
 document.querySelector("#receita-preparo").innerHTML =
     receitaSelecionada.preparo;
 
+/*
 const userCookie = getCookie("userid");
 
 console.log(userCookie);
@@ -84,24 +90,29 @@ console.log(userCookie);
 const userQuery = query(
     collection(db, "usuarios"),
     where("__name__", "==", userCookie)
+); */
+
+const userQuery = query(
+    collection(db, "usuarios"),
+    where("__name__", "==", receitaSelecionada.usuario)
 );
 
 var userData = null;
 
 const userSnapshot = await getDocs(userQuery);
 userSnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
     userData = doc.data();
 });
 
 document.querySelector("#receita-autor").innerHTML =
     "autor: " + userData.usuario;
 
-console.log(receitaSelecionada.imagemReceita);
-const image = new Image();
-image.setAttribute('xlink:href',`data:image/png;base64,${receitaSelecionada.imagemReceita}`)
+const storage = getStorage(app);
 
-const imageContainer = document.querySelector("#receita-img-div");
-imageContainer.innerHTML = ""; // Limpa qualquer imagem anterior
-imageContainer.appendChild(image);
-//document.querySelector("#receita-img").src = receitaSelecionada.imagemReceita;
+const pathReference = ref(storage, receitaSelecionada.imagemReceita);
+
+const url = await getDownloadURL(pathReference);
+
+console.log(url);
+
+document.querySelector("#receita-img").src = url;

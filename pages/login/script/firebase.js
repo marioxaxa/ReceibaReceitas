@@ -56,7 +56,7 @@ document.getElementById("btnRegistrar").addEventListener("click", async (e) => {
 
     // Verificar se o e-mail ou nome de usuário já estão em uso
     if (await isUserAlreadyExists(email, login)) {
-        alert("E-mail ou nome de usuário já está em uso.");
+        console.log("E-mail ou nome de usuário já está em uso.");
         return;
     }
 
@@ -67,7 +67,7 @@ document.getElementById("btnRegistrar").addEventListener("click", async (e) => {
             usuario: login,
             senha: senha,
         });
-        alert("Usuário adicionado.");
+        console.log("Usuário adicionado.");
     } catch (error) {
         console.error("Erro ao adicionar usuário: ", error);
     }
@@ -85,18 +85,18 @@ document.getElementById("btnLogar").addEventListener("click", async (e) => {
         querySnapshot.forEach((doc) => {
             if (email === doc.data().email) {
                 if (senha === doc.data().senha) {
-                    setCookie('userid', doc.id, 1);
-                    alert("Logado com sucesso");
+                    setCookie("userid", doc.id, 1);
+                    console.log("Logado com sucesso");
                     window.location.href = "../p_perfil/p_perfil.html";
                 } else {
-                    alert("Senha diferente");
+                    console.log("Senha diferente");
                 }
                 naoCadastrado = false;
             }
         });
 
         if (naoCadastrado) {
-            alert("Usuário não encontrado");
+            console.log("Usuário não encontrado");
         }
     } catch (error) {
         console.error("Erro ao obter documentos: ", error);

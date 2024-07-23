@@ -7,6 +7,11 @@ import {
     query,
     where,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+    getStorage,
+    ref,
+    getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import getCookie from "../../../src/utils/getCookie";
 
@@ -37,19 +42,24 @@ var receitasDoUser = [];
 
 const testSnapshot = await getDocs(testQuery);
 testSnapshot.forEach((doc) => {
-    const obj = doc.data()
-    obj.id = doc.id
+    const obj = doc.data();
+    obj.id = doc.id;
     receitasDoUser.push(obj);
 });
 
+const storage = getStorage(app);
 
 const suasReceitas = document.querySelector("#suas-receitas-card");
-receitasDoUser.forEach((receita) => {
+receitasDoUser.forEach(async (receita) => {
+    const pathReference = ref(storage, receita.imagemReceita);
+
+    const url = await getDownloadURL(pathReference);
+
     const newChild = document.createElement("a");
     newChild.innerHTML = `<a href="../p_receita/p_receita.html" id=${receita.id}>
                             <div class="sua-receita-card">
                                 <img
-                                    src="../public/imagens/torta-placeholder.png"
+                                    src="${url}"
                                     alt=""
                                 /> 
                                 <div>
@@ -86,11 +96,9 @@ receitasDoUser.forEach((receita) => {
                             </div>
                         </a>`;
 
-    newChild.addEventListener('click', () => {
-        document.cookie = "receita="+receita.id+";path=/";
-    })
+    newChild.addEventListener("click", () => {
+        document.cookie = "receita=" + receita.id + ";path=/";
+    });
 
     suasReceitas.appendChild(newChild);
-
-
 });

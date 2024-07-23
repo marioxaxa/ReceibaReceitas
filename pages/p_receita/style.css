@@ -295,8 +295,19 @@ aside > sub,
 aside > h2 {
     text-align: center;
 }
-aside > img {
+
+#semana-img-div {
     width: 100%;
+}
+
+#semana-img-div > img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    background-size: contain;
+}
+
+#receita-img {
     border-radius: 15px;
 }
 
@@ -336,15 +347,13 @@ aside > p {
 }
 
 @media (max-width: 900px) {
-     
-    #footer-div{
-    margin: 0 10%;
+    #footer-div {
+        margin: 0 10%;
     }
-    }
+}
 
-    @media (max-width: 650px) {
-     
-        #footer-div{
+@media (max-width: 650px) {
+    #footer-div {
         gap: 20%;
-        }
-        }
+    }
+}

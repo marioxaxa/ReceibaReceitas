@@ -1,26 +1,36 @@
 // Importar as funções necessárias dos SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+    getFirestore,
+    collection,
+    getDocs,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+    getStorage,
+    ref,
+    getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "DOMAIN",
-  projectId: "PROJECT_ID",
-  storageBucket: "STORAGE_BUCKET",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID",
-  measurementId: "MEASUREMENT_ID"
+    apiKey: "API_KEY",
+    authDomain: "DOMAIN",
+    projectId: "PROJECT_ID",
+    storageBucket: "STORAGE_BUCKET",
+    messagingSenderId: "SENDER_ID",
+    appId: "APP_ID",
+    measurementId: "MEASUREMENT_ID",
 };
 
 // Inicializar o Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 let receitas = [];
 
 async function listarReceitas() {
-    const listaReceitas = document.getElementById('listaReceitas');
+    const listaReceitas = document.getElementById("listaReceitas");
 
     try {
         const querySnapshot = await getDocs(collection(db, "receitas"));
@@ -34,11 +44,13 @@ async function listarReceitas() {
 }
 
 function exibirReceitas(receitas) {
-    const listaReceitas = document.getElementById('listaReceitas');
-    listaReceitas.innerHTML = '';
+    const listaReceitas = document.getElementById("listaReceitas");
+    listaReceitas.innerHTML = "";
 
-    receitas.forEach(receita => {
-        const listItem = document.createElement('li');
+    receitas.forEach(async (receita) => {
+        
+
+        const listItem = document.createElement("li");
         listItem.innerHTML = `
             <h2>${receita.nome}</h2>
             <p><strong>Tipo:</strong> ${receita.tipo}</p>
@@ -46,30 +58,37 @@ function exibirReceitas(receitas) {
             <p><strong>Porções:</strong> ${receita.porcoes}</p>
             <p><strong>Ingredientes:</strong> ${receita.ingredientes}</p>
             <p><strong>Modo de Preparo:</strong> ${receita.preparo}</p>
-            <img src="${receita.imagemReceita}" alt="Imagem da receita">
+            <img src="${url}" alt="Imagem da receita">
         `;
         listaReceitas.appendChild(listItem);
     });
 }
 
 function filtrarReceitas() {
-    const nomeFiltro = document.getElementById('pesquisarNome').value.toLowerCase();
-    const tiposFiltro = Array.from(document.querySelectorAll('.filtroTipo:checked')).map(checkbox => checkbox.value);
-    
-    const receitasFiltradas = receitas.filter(receita => {
+    const nomeFiltro = document
+        .getElementById("pesquisarNome")
+        .value.toLowerCase();
+    const tiposFiltro = Array.from(
+        document.querySelectorAll(".filtroTipo:checked")
+    ).map((checkbox) => checkbox.value);
+
+    const receitasFiltradas = receitas.filter((receita) => {
         const nomeMatch = receita.nome.toLowerCase().includes(nomeFiltro);
-        const tipoMatch = tiposFiltro.length === 0 || tiposFiltro.includes(receita.tipo);
+        const tipoMatch =
+            tiposFiltro.length === 0 || tiposFiltro.includes(receita.tipo);
         return nomeMatch && tipoMatch;
     });
 
     exibirReceitas(receitasFiltradas);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     listarReceitas();
 
-    document.getElementById('pesquisarNome').addEventListener('input', filtrarReceitas);
-    document.querySelectorAll('.filtroTipo').forEach(checkbox => {
-        checkbox.addEventListener('change', filtrarReceitas);
+    document
+        .getElementById("pesquisarNome")
+        .addEventListener("input", filtrarReceitas);
+    document.querySelectorAll(".filtroTipo").forEach((checkbox) => {
+        checkbox.addEventListener("change", filtrarReceitas);
     });
 });
