@@ -1,0 +1,201 @@
+main {
+    background-color: rgba(186, 230, 91, 0.6);
+    color: var(--text);
+    display: flex;
+    padding: 2% 20%;
+}
+
+section {
+    flex: 3;
+}
+
+section > h1 {
+    background-color: #fefcfb;
+    padding: 5% 5%;
+    border-radius: 15px;
+    font-size: 2rem;
+    text-wrap: wrap;
+}
+
+article {
+    background-color: #fefcfb;
+    padding: 5% 5%;
+    border-radius: 15px;
+    margin-top: 2%;
+}
+
+article > img {
+    width: 100%;
+}
+
+#food-type {
+    margin: 2% auto;
+    padding: 2% 3%;
+    width: 80%;
+    border-radius: 15px;
+    background-color: var(--secondary);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#food-type > div {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    text-wrap: nowrap;
+    font-weight: 600;
+}
+
+#ingredientes-div > h1,
+#preparo-div > h1 {
+    margin: 5% 0;
+}
+
+#preparo-div > p {
+    text-align: justify;
+}
+
+article > sub {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+#ingredientes-div > ul {
+    list-style: circle;
+    padding-left: 6%;
+}
+
+#comments-div {
+    background-color: #fefcfb;
+    padding: 5% 5%;
+    border-radius: 15px;
+    margin-top: 2%;
+}
+
+#comments-div > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#comments-div > div > div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2%;
+}
+
+#salvar-div, #amei-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1.5px var(--primary);
+    border-radius: 5px;
+    padding: 1% 2%;
+    text-wrap: nowrap;
+    gap: 3%;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+#salvar-div:hover, #amei-div:hover {
+    border: dashed 1.5px color-mix(in srgb, var(--primary) 80%, white);
+    color: color-mix(in srgb, var(--primary) 80%, white);
+}
+
+#comment-input {
+    display: block;
+    width: 90%;
+    margin: 4% auto;
+    border: solid 2px hsl(0, 0%, 63%);
+    border-radius: 20px;
+    padding: 2% 3%;
+}
+
+#comment-input::-webkit-input-placeholder {
+    color: hsl(0, 0%, 63%);
+    font-size: 1rem;
+    font-style: bold;
+}
+
+aside {
+    flex: 1;
+    height: fit-content;
+    background-color: #e9b28f;
+    padding: 2% 2%;
+    border-radius: 15px;
+    margin-left: 2%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2%;
+}
+
+aside > h1,
+aside > sub,
+aside > h2 {
+    text-align: center;
+}
+
+#semana-img-div {
+    width: 100%;
+}
+
+#semana-img-div > img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    background-size: contain;
+}
+
+#receita-img {
+    border-radius: 15px;
+}
+
+aside > h2 {
+    font-weight: 600;
+}
+
+aside > p {
+    text-align: justify;
+}
+
+@media (max-width: 900px) {
+    main {
+        flex-direction: column-reverse;
+        padding: 2% 5%;
+    }
+    aside {
+        position: static;
+        top: 0;
+        margin-left: 0;
+        margin: 5% 15%;
+    }
+}
+
+@media (max-width: 600px) {
+    #food-type {
+        flex-direction: column;
+    }
+
+    #comments-div > div {
+        flex-direction: column-reverse;
+    }
+
+    #comments-div > div > div:last-child {
+        margin-bottom: 2%;
+    }
+}
+
+@media (max-width: 900px) {
+    #footer-div {
+        margin: 0 10%;
+    }
+}
+
+@media (max-width: 650px) {
+    #footer-div {
+        gap: 20%;
+    }
+}
