@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Receiba</title>
         <link rel="stylesheet" href="style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.googleapis.com/" />
+        <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
             rel="stylesheet"
@@ -14,21 +14,35 @@
         <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href="public/favicon/apple-touch-icon.png"
+            href="/public/favicon/apple-touch-icon.png"
         />
         <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href="public/favicon/favicon-32x32.png"
+            href="/public/favicon/favicon-32x32.png"
         />
         <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href="public/favicon/favicon-16x16.png"
+            href="/public/favicon/favicon-16x16.png"
         />
-        <link rel="manifest" href="public/favicon/site.webmanifest" />
+        <link rel="manifest" href="/public/favicon/site.webmanifest" />
+        <style>
+            a {
+                text-decoration: none;
+                color: #0d0402;
+            }
+
+            a:link {
+                color: #0d0402;
+            }
+
+            a:visited {
+                color: #0d0402;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -50,11 +64,11 @@
                 </div>
                 <div class="header-options">
                     <div>
-                        <a href="pages/p_enviar/p_enviar.html"
+                        <a href="../p_enviar/p_enviar.html"
                             >Envie sua receita</a
                         >
                     </div>
-                    <div><a href="pages/sobre/sobre.html">Sobre nós</a></div>
+                    <div><a href="../sobre/sobre.html">Sobre nós</a></div>
                 </div>
                 <div id="header-logo">
                     <a href="/index.html"
@@ -65,12 +79,12 @@
                 </div>
                 <div class="header-options">
                     <div>
-                        <a href="pages/login/login.html" id="perfil-button"
+                        <a id="perfil-button" href="../login/login.html"
                             >Perfil</a
                         >
                     </div>
                     <div>
-                        <a href="pages/p_busca/p_busca.html">
+                        <a href="../p_busca/p_busca.html">
                             <svg
                                 width="22"
                                 height="25"
@@ -88,32 +102,115 @@
                 </div>
             </div>
         </header>
-        <div class="imgs">
-            <img
-                class="cozinheiros"
-                src="public/imagens/cozinheiros.png"
-                alt=""
-            />
-            <img class="vetor1" src="public/imagens/vetor1.png" alt="" />
-            <img class="vetor2" src="public/imagens/vetor2.png" alt="" />
-        </div>
-
-        <div class="conteudo">
-            <p>Nossas receitas mais perto de você</p>
-            <h1>IMPRESSIONE SEUS AMIGOS!</h1>
-            <p>
-                Acesse nosso site e descubra novas receitas para inovar seus
-                pratos, tudo que você precisa para aprender a fazer refeições,
-                sobremesas, drinks e muito mais, está aqui.
-            </p>
-            <a href="pages/p_ranking/index.html" style="text-decoration: none">
-                <button>
-                    <h2>Descobrir</h2>
-                    <img src="public/imagens/icone.png" alt="" />
-                </button>
-            </a>
-        </div>
-
+        <main>
+            <section>
+                <div id="ache-aqui">
+                    <h1>Ache aqui sua receita</h1>
+                </div>
+                <div id="encontre-receita">
+                    <div id="lista-receita">
+                        <div class="lista-categoria" id="receita_listada"></div>
+                    </div>
+                    <div>
+                        <div id="filtro">
+                            <div id="filtrar-por-tipo">
+                                <h1>Filtrar por tipo</h1>
+                            </div>
+                            <div id="pesquisar">
+                                <input
+                                    id="pesquisar-input"
+                                    type="text"
+                                    placeholder="Pesquisar nome"
+                                />
+                            </div>
+                            <div id="marcadores">
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Ave"
+                                        id=""
+                                    />
+                                    Aves
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Bebida"
+                                        id=""
+                                    />
+                                    Bebidas
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Carne"
+                                        id=""
+                                    />
+                                    Carnes
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Sobremesa"
+                                        id=""
+                                    />
+                                    Sobremesas
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Lanche"
+                                        id=""
+                                    />
+                                    Lanches
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Massa"
+                                        id=""
+                                    />
+                                    Massas
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Fruto do mar"
+                                        id=""
+                                    />
+                                    Frutos do mar
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Salada"
+                                        id=""
+                                    />
+                                    Saladas
+                                </div>
+                                <div class="opção">
+                                    <input
+                                        class="checkbox-tipo"
+                                        type="checkbox"
+                                        name="Sopa"
+                                        id=""
+                                    />
+                                    Sopas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
         <footer>
             <div id="footer-div">
                 <div id="footer-logo">
@@ -222,6 +319,9 @@
                 </div>
             </div>
         </footer>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
+        <script type="module" src="busca.js"></script>
+        <script type="module" src="header.js"></script>
     </body>
-    <script type="module" src="main.js"></script>
 </html>
