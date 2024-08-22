@@ -48,6 +48,8 @@ export default function EnviarReceita() {
     }));
   };
 
+  const [tipo, setTipo] = useState("")
+
   // Função para lidar com o envio do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -68,7 +70,7 @@ export default function EnviarReceita() {
       newErrors.nome_receita = 'Nome da receita é obrigatório.';
       hasErrors = true;
     }
-    if (!formData.tipo) {
+    if (!tipo) {
       newErrors.tipo = 'Tipo é obrigatório.';
       hasErrors = true;
     }
@@ -108,7 +110,7 @@ export default function EnviarReceita() {
       // Adicionar a receita ao Firestore
       const receitaData = {
         nome_receita: formData.nome_receita,
-        tipo: formData.tipo,
+        tipo: tipo,
         tempo: formData.tempo,
         porções: formData.porções,
         imagem: imageURL, // URL da imagem
@@ -187,12 +189,14 @@ export default function EnviarReceita() {
                       </InputLabel>
                       <Select
                         id="tipo"
-                        value={formData.tipo || ''}
-                        onChange={handleChange}
                         variant="outlined"
                         sx={{
                           height: "56px", // Ajustando a altura para form-control-lg
                           mt: 4,
+                        }}
+                        value={tipo}
+                        onChange={(event) => {
+                          setTipo(event.target.value)
                         }}
                       >
                         <MenuItem value="">

@@ -260,8 +260,8 @@ export default function PDeReceita() {
                     </div>
                 </section>
 
-                <aside>
-                    <a href="../p_receita/p_receita.html" id="a-semana">
+                <aside  >
+                    <a href="../p_receita/p_receita.html" id="a-semana" style={{textDecoration: 'none', color:'black'}} >
                         <h1>Receita da semana</h1>
                         <sub>Por: Felipinho</sub>
                         <div id="semana-img-div">

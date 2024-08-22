@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { db, collection, getDocs, storage, ref, getDownloadURL } from "./firebase";
+import {
+  db,
+  collection,
+  getDocs,
+  storage,
+  ref,
+  getDownloadURL,
+} from "./firebase";
 import {
   Grid,
   Box,
@@ -10,12 +17,14 @@ import {
   Card,
   CardContent,
   CardMedia,
-  IconButton
+  IconButton,
 } from "@mui/material";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { styled } from '@mui/material/styles';
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { styled } from "@mui/material/styles";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/Header/Header";
+import { NavLink } from "react-router-dom";
+import { AppContext } from "../../context/AppContextDiv";
 
 // Estiliza o botão do ícone
 const StyledIconButton = styled(IconButton)(({ theme }) => ({
@@ -24,9 +33,9 @@ const StyledIconButton = styled(IconButton)(({ theme }) => ({
 
 // Estiliza o texto para garantir tamanho consistente
 const InfoText = styled(Typography)(({ theme }) => ({
-  fontSize: 'body1.fontSize', // Tamanho do texto
-  display: 'flex',
-  alignItems: 'center',
+  fontSize: "body1.fontSize", // Tamanho do texto
+  display: "flex",
+  alignItems: "center",
   marginBottom: theme.spacing(0.5),
 }));
 
@@ -62,7 +71,7 @@ export default function BuscarReceita() {
               return {
                 id: doc.id,
                 ...data,
-                imagemReceita: imagemUrl
+                imagemReceita: imagemUrl,
               };
             })
           );
@@ -84,15 +93,20 @@ export default function BuscarReceita() {
       let filtered = allReceitas;
 
       if (searchText) {
-        filtered = filtered.filter(receita =>
+        filtered = filtered.filter((receita) =>
           receita.nome.toLowerCase().includes(searchText.toLowerCase())
         );
       }
 
       if (Object.keys(checkedCategories).length > 0) {
-        filtered = filtered.filter(receita =>
-          checkedCategories[receita.categoria] // Verifique se `receita.categoria` corresponde às categorias selecionadas
+        filtered = filtered.filter(
+          (receita) => {
+            return checkedCategories[receita.tipo]} // Verifique se `receita.categoria` corresponde às categorias selecionadas
         );
+      }
+
+      if(filtered.length == 0){
+        filtered = allReceitas
       }
 
       setFilteredReceitas(filtered);
@@ -103,75 +117,106 @@ export default function BuscarReceita() {
 
   const handleCheckboxChange = (event) => {
     const { name, checked } = event.target;
-    setCheckedCategories(prevCategories => ({
+    setCheckedCategories((prevCategories) => ({
       ...prevCategories,
       [name]: checked,
     }));
   };
 
+  const { setRecipe } = React.useContext(AppContext);
+
   return (
     <>
-      <Header />
-
       <main>
         <section>
           <Box
             id="ache-aqui"
             padding={2}
             sx={{
-              backgroundColor: 'orange',
-              color: 'white',
-              borderRadius: '12px'
+              backgroundColor: "orange",
+              color: "white",
+              borderRadius: "12px",
             }}
           >
             <Typography variant="h4">Ache aqui sua receita</Typography>
           </Box>
-          <Box
-            id="encontre-receita"
-            padding={2}
-          >
+          <Box id="encontre-receita" padding={2}>
             <Grid container spacing={3}>
               <Grid item xs={12} md={8}>
                 <Box id="lista-receita">
                   <Box id="receita_listada" className="lista-categoria">
                     {filteredReceitas.length > 0 ? (
-                      filteredReceitas.map((receita) => (
-                        <Card key={receita.id} sx={{ marginBottom: 2, width: '100%' }}>
-                          {receita.imagemReceita && (
-                            <CardMedia
-                              component="img"
-                              height="200"
-                              image={receita.imagemReceita}
-                              alt={receita.nome}
-                              sx={{ objectFit: 'cover' }} // Faz com que a imagem se ajuste bem ao tamanho
-                            />
-                          )}
-                          <CardContent>
-                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
-                              {receita.nome}
-                            </Typography>
-                            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                              <InfoText color="textSecondary">
-                                <strong>Porções:</strong> {receita.porcoes}
-                              </InfoText>
-                              <InfoText color="textSecondary">
-                                <strong>Tempo:</strong> {receita.tempo}
-                              </InfoText>
-                              <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                                <StyledIconButton color="primary">
-                                  <FavoriteIcon />
-                                </StyledIconButton>
-                                <Typography variant="body1" color="textSecondary" sx={{ ml: 1 }}>
-                                  {receita.curtidas}
-                                </Typography>
+                      filteredReceitas.map((receita, index) => (
+                        <Card
+                          key={receita.id}
+                          sx={{ marginBottom: 2, width: "100%" }}
+                          key={index+receita.nome}
+                        >
+                          <NavLink
+                            to={"/receita"}
+                            onClick={() => {
+                              const novareceita = receita
+                              novareceita.imageUrl = receita.imagemReceita
+                              setRecipe(novareceita);
+                            }}
+                          >
+                            {receita.imagemReceita && (
+                              <CardMedia
+                                component="img"
+                                height="200"
+                                image={receita.imagemReceita}
+                                alt={receita.nome}
+                                sx={{ objectFit: "cover" }} // Faz com que a imagem se ajuste bem ao tamanho
+                              />
+                            )}
+                            <CardContent>
+                              <Typography
+                                variant="h5"
+                                sx={{ fontWeight: "bold", mb: 1 }}
+                              >
+                                {receita.nome}
+                              </Typography>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                <InfoText color="textSecondary">
+                                  <strong>Porções:</strong> {receita.porcoes}
+                                </InfoText>
+                                <InfoText color="textSecondary">
+                                  <strong>Tempo:</strong> {receita.tempo}
+                                </InfoText>
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    mt: 1,
+                                  }}
+                                >
+                                  <StyledIconButton color="primary">
+                                    <FavoriteIcon />
+                                  </StyledIconButton>
+                                  <Typography
+                                    variant="body1"
+                                    color="textSecondary"
+                                    sx={{ ml: 1 }}
+                                  >
+                                    {receita.curtidas}
+                                  </Typography>
+                                </Box>
                               </Box>
-                            </Box>
-                          </CardContent>
+                            </CardContent>
+                          </NavLink>
                         </Card>
                       ))
                     ) : (
-                      <Box sx={{ textAlign: 'center', marginTop: 4 }}>
-                        <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'text.secondary' }}>
+                      <Box sx={{ textAlign: "center", marginTop: 4 }}>
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: "bold", color: "text.secondary" }}
+                        >
                           Nenhuma receita encontrada com esses filtros.
                         </Typography>
                       </Box>
@@ -184,8 +229,8 @@ export default function BuscarReceita() {
                   id="filtro"
                   padding={2}
                   sx={{
-                    backgroundColor: 'white',
-                    borderRadius: '12px',
+                    backgroundColor: "white",
+                    borderRadius: "12px",
                     boxShadow: 1,
                   }}
                 >
@@ -205,9 +250,9 @@ export default function BuscarReceita() {
                     id="marcadores"
                     marginTop={2}
                     sx={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(2, 1fr)',
-                      gap: '8px',
+                      display: "grid",
+                      gridTemplateColumns: "repeat(2, 1fr)",
+                      gap: "8px",
                     }}
                   >
                     <FormControlLabel
@@ -316,7 +361,6 @@ export default function BuscarReceita() {
           </Box>
         </section>
       </main>
-      <Footer></Footer>
     </>
   );
 }
