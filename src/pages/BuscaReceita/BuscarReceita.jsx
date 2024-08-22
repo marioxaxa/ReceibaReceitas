@@ -316,6 +316,7 @@ export default function BuscarReceita() {
           </Box>
         </section>
       </main>
+      <Footer></Footer>
     </>
   );
 }
