@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Header from "../../components/Header/Header";
+import Footer from "../../components/footer/Footer";
 import './EnviarReceita.css'
 import {
   Grid,
@@ -12,6 +13,8 @@ import {
   Typography,
   Button
 } from "@mui/material";
+import { db, storage, ref, uploadBytes, getDownloadURL, collection, addDoc } from "./firebase";
+
 
 export default function EnviarReceita() {
   // Estado para armazenar os valores dos campos do formulário
@@ -21,6 +24,17 @@ export default function EnviarReceita() {
     tempo: '',
     porções: '',
     imagem: null,
+    ingredientes: '',
+    como_fazer: ''
+  });
+
+  // Estado para armazenar as mensagens de erro
+  const [errors, setErrors] = useState({
+    nome_receita: '',
+    tipo: '',
+    tempo: '',
+    porções: '',
+    imagem: '',
     ingredientes: '',
     como_fazer: ''
   });
@@ -35,22 +49,99 @@ export default function EnviarReceita() {
   };
 
   // Função para lidar com o envio do formulário
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Criação do objeto JSON com os dados do formulário
-    const dataToLog = {
-      nome_receita: formData.nome_receita,
-      tipo: formData.tipo,
-      tempo: formData.tempo,
-      porções: formData.porções,
-      imagem: formData.imagem ? formData.imagem.name : null, // Apenas o nome do arquivo
-      ingredientes: formData.ingredientes,
-      como_fazer: formData.como_fazer
+
+    // Validação do formulário
+    let hasErrors = false;
+    let newErrors = {
+      nome_receita: '',
+      tipo: '',
+      tempo: '',
+      porções: '',
+      imagem: '',
+      ingredientes: '',
+      como_fazer: ''
     };
-    
-    // Log do JSON no console
-    console.log("Dados do Formulário:", JSON.stringify(dataToLog, null, 2));
+
+    if (!formData.nome_receita) {
+      newErrors.nome_receita = 'Nome da receita é obrigatório.';
+      hasErrors = true;
+    }
+    if (!formData.tipo) {
+      newErrors.tipo = 'Tipo é obrigatório.';
+      hasErrors = true;
+    }
+    if (!formData.tempo) {
+      newErrors.tempo = 'Tempo de preparo é obrigatório.';
+      hasErrors = true;
+    }
+    if (!formData.porções) {
+      newErrors.porções = 'Número de porções é obrigatório.';
+      hasErrors = true;
+    }
+    if (!formData.imagem) {
+      newErrors.imagem = 'Imagem é obrigatória.';
+      hasErrors = true;
+    }
+    if (!formData.ingredientes) {
+      newErrors.ingredientes = 'Ingredientes são obrigatórios.';
+      hasErrors = true;
+    }
+    if (!formData.como_fazer) {
+      newErrors.como_fazer = 'Modo de preparo é obrigatório.';
+      hasErrors = true;
+    }
+
+    if (hasErrors) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Se não houver erros, faça o upload da imagem e adicione a receita ao Firestore
+    try {
+      // Upload da imagem
+      const imageRef = ref(storage, `imagens_receitas/${formData.imagem.name}`);
+      await uploadBytes(imageRef, formData.imagem);
+      const imageURL = await getDownloadURL(imageRef);
+
+      // Adicionar a receita ao Firestore
+      const receitaData = {
+        nome_receita: formData.nome_receita,
+        tipo: formData.tipo,
+        tempo: formData.tempo,
+        porções: formData.porções,
+        imagem: imageURL, // URL da imagem
+        ingredientes: formData.ingredientes,
+        como_fazer: formData.como_fazer
+      };
+
+      await addDoc(collection(db, "receitas"), receitaData);
+      console.log("Receita enviada com sucesso!");
+      
+      // Limpar o formulário e mensagens de erro
+      setFormData({
+        nome_receita: '',
+        tipo: '',
+        tempo: '',
+        porções: '',
+        imagem: null,
+        ingredientes: '',
+        como_fazer: ''
+      });
+      setErrors({
+        nome_receita: '',
+        tipo: '',
+        tempo: '',
+        porções: '',
+        imagem: '',
+        ingredientes: '',
+        como_fazer: ''
+      });
+    } catch (error) {
+      console.error("Erro ao enviar receita:", error);
+      // Você pode adicionar uma mensagem de erro para o usuário aqui
+    }
   };
 
   return (
@@ -76,6 +167,8 @@ export default function EnviarReceita() {
                       fullWidth
                       value={formData.nome_receita}
                       onChange={handleChange}
+                      error={Boolean(errors.nome_receita)}
+                      helperText={errors.nome_receita}
                     />
                   </Box>
                 </Grid>
@@ -89,8 +182,8 @@ export default function EnviarReceita() {
                       justifyContent: 'center' // Centraliza horizontalmente
                     }}
                   >
-                    <FormControl fullWidth>
-                      <InputLabel htmlFor="tipo" sx={{ mb: 1 }}>
+                    <FormControl fullWidth error={Boolean(errors.tipo)}>
+                      <InputLabel htmlFor="tipo" sx={{ mb: 1, pt: 3 }}>
                         Tipo
                       </InputLabel>
                       <Select
@@ -100,6 +193,7 @@ export default function EnviarReceita() {
                         variant="outlined"
                         sx={{
                           height: "56px", // Ajustando a altura para form-control-lg
+                          mt: 4,
                         }}
                       >
                         <MenuItem value="">
@@ -115,13 +209,14 @@ export default function EnviarReceita() {
                         <MenuItem value="Sobremesa">Sobremesa</MenuItem>
                         <MenuItem value="Sopa">Sopa</MenuItem>
                       </Select>
+                      {errors.tipo && <Typography variant="body2" color="error" sx={{ mt: 1 }}>{errors.tipo}</Typography>}
                     </FormControl>
                   </Box>
                 </Grid>
               </Grid>
 
               <Grid container spacing={2} sx={{ mb: 1 }}>
-                {/* Primeira Coluna: Erro Nome */}
+                {/* Erro Nome */}
                 <Grid item xs={8}>
                   <Box sx={{ mb: 3 }}>
                     <Typography id="erro_nome" variant="body2" color="error">
@@ -130,7 +225,7 @@ export default function EnviarReceita() {
                   </Box>
                 </Grid>
 
-                {/* Segunda Coluna: Erro Tipo */}
+                {/* Erro Tipo */}
                 <Grid item xs={4}>
                   <Box sx={{ mb: 3 }}>
                     <Typography id="erro_tipo" variant="body2" color="error">
@@ -153,6 +248,8 @@ export default function EnviarReceita() {
                       fullWidth
                       value={formData.tempo}
                       onChange={handleChange}
+                      error={Boolean(errors.tempo)}
+                      helperText={errors.tempo}
                       InputProps={{
                         sx: {
                           borderRadius: 1,
@@ -174,6 +271,8 @@ export default function EnviarReceita() {
                       fullWidth
                       value={formData.porções}
                       onChange={handleChange}
+                      error={Boolean(errors.porções)}
+                      helperText={errors.porções}
                       InputProps={{
                         sx: {
                           borderRadius: 1,
@@ -195,6 +294,8 @@ export default function EnviarReceita() {
                       variant="outlined"
                       fullWidth
                       onChange={handleChange}
+                      error={Boolean(errors.imagem)}
+                      helperText={errors.imagem}
                       InputProps={{
                         sx: {
                           borderRadius: 1,
@@ -249,6 +350,8 @@ export default function EnviarReceita() {
                       fullWidth
                       value={formData.ingredientes}
                       onChange={handleChange}
+                      error={Boolean(errors.ingredientes)}
+                      helperText={errors.ingredientes}
                       InputProps={{
                         sx: {
                           borderRadius: 1,
@@ -272,6 +375,8 @@ export default function EnviarReceita() {
                       fullWidth
                       value={formData.como_fazer}
                       onChange={handleChange}
+                      error={Boolean(errors.como_fazer)}
+                      helperText={errors.como_fazer}
                       InputProps={{
                         sx: {
                           borderRadius: 1,
@@ -325,8 +430,11 @@ export default function EnviarReceita() {
               </Box>
             </form>
           </div>
+          
         </section>
+        
       </main>
+      <Footer />
     </div>
   );
 }
