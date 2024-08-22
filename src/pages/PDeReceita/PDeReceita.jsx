@@ -1,18 +1,40 @@
+import { Container } from "@mui/material";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/Header/Header";
-import './PDeReceita.css'
+import "./PDeReceita.css";
+import { AppContext } from "../../context/AppContextDiv";
+import React, { useEffect } from "react";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import app from "../../services/firebaseapp";
 
 export default function PDeReceita() {
+    const { recipe } = React.useContext(AppContext);
+
+    useEffect(() => {
+        async function changeImage() {
+            const storage = getStorage(app);
+
+            const pathReference = ref(storage, 'perunatalino.jpg');
+
+            const url = await getDownloadURL(pathReference);
+            
+            document.querySelector("#img-semana").src = url;
+        }
+        
+        changeImage()
+      
+    }, [])
+    
+
     return (
         <>
-            <Header />
             <main>
-                <section>
-                    <h1 id="receita-nome">Torta de frutas</h1>
+                <section  >
+                    <h1 id="receita-nome">{recipe.nome}</h1>
                     <article>
                         <img
                             id="receita-img"
-                            src="../public/imagens/torta.png"
+                            src={recipe.imageUrl}
                             alt=""
                         />
 
@@ -30,7 +52,7 @@ export default function PDeReceita() {
                                         fill="black"
                                     />
                                 </svg>
-                                <p id="receita-tempo">35min</p>
+                                <p id="receita-tempo">{recipe.tempo}</p>
                             </div>
                             <div>
                                 <svg
@@ -66,7 +88,7 @@ export default function PDeReceita() {
                                         />
                                     </defs>
                                 </svg>
-                                <p id="receita-tipo">Sobremesas</p>
+                                <p id="receita-tipo">{recipe.tipo}</p>
                             </div>
                             <div>
                                 <svg
@@ -102,19 +124,28 @@ export default function PDeReceita() {
                                         />
                                     </defs>
                                 </svg>
-                                <p id="receita-porcoes">6 Porções</p>
+                                <p id="receita-porcoes">{recipe.porcoes}</p>
                             </div>
                         </div>
 
                         <div id="ingredientes-div">
                             <h1>Ingredientes</h1>
-                            <ul id="receita-ingredientes"></ul>
+                            <ul id="receita-ingredientes">
+                                {recipe.ingredientes
+                                    .replaceAll("\n", "")
+                                    .split(",")
+                                    .map((ingrediente, index) => {
+                                        return (
+                                            <li key={index}>{ingrediente}</li>
+                                        );
+                                    })}
+                            </ul>
                         </div>
                         <div id="preparo-div">
                             <h1>Preparo</h1>
-                            <p id="receita-preparo"></p>
+                            <p id="receita-preparo">{recipe.preparo}</p>
                         </div>
-                        <sub id="receita-autor">autor:Joelson</sub>
+                        <sub id="receita-autor">autor:{recipe.autor}</sub>
                     </article>
                     <div id="comments-div">
                         <div>
@@ -248,7 +279,6 @@ export default function PDeReceita() {
                     </a>
                 </aside>
             </main>
-            <Footer />
         </>
     );
 }
