@@ -1,0 +1,13 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  --text: #0d0402;
+  --background: #fefcfb;
+  --primary: #de702b;
+  --secondary: #deed87;
+  --accent: #bae65b;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
