@@ -7,7 +7,6 @@ import Header from "../../components/Header/Header";
 export default function Sobre() {
   return (
     <>
-      <Header />
     <Container>
       {/* Título */}
       <Box mt={5} textAlign="center" borderRadius={2} bgcolor="var(--accent)" p={4} mb={4}>
@@ -139,7 +138,6 @@ export default function Sobre() {
         </Box>
       </Box>
     </Container>
-    <Footer />
     </>
   );
 }

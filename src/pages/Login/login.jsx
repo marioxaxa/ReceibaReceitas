@@ -17,10 +17,14 @@ import Header from "../../components/Header/Header";
 import { registerUser, loginUser } from "./firebase"; // Atualize o caminho conforme necessário
 import "./login.css";
 import { AppContext } from "../../context/AppContextDiv";
+import getUserInfo from "../../utils/getUserInfo";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
     const { user, setUser } = React.useContext(AppContext);
+
+    const navegate = useNavigate()
 
     const [showPassword1, setShowPassword1] = useState(false);
     const [showPassword2, setShowPassword2] = useState(false);
@@ -58,7 +62,7 @@ const Login = () => {
         try {
             await registerUser(registerEmail, registerPassword, userRegister);
             setRegisterSuccess("Usuário registrado com sucesso!");
-            console.log("Usuário registrado com sucesso");
+
         } catch (error) {
             setRegisterError(error.message);
         }
@@ -78,8 +82,8 @@ const Login = () => {
         try {
             const userId = await loginUser(loginEmail, loginPassword);
             setLoginSuccess("Usuário logado com sucesso!");
-            console.log("Usuário logado com sucesso, ID:", userId);
-            setUser(userId)
+            setUser( userId)
+            navegate("/perfil")
         } catch (error) {
             setLoginError(error.message);
         }
@@ -87,7 +91,6 @@ const Login = () => {
 
     return (
         <div>
-            <Header />
             <Container maxWidth="lg" style={{ marginTop: "2rem" }}>
                 <Grid container spacing={4} justifyContent="center">
                     <Grid item xs={12} sm={6} md={4}>
@@ -269,7 +272,7 @@ const Login = () => {
                     </Grid>
                 </Grid>
             </Container>
-            <Footer />
+           
         </div>
     );
 };

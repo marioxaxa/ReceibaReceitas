@@ -12,12 +12,28 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import AppContextDiv from "./context/AppContextDiv.jsx";
 import PDePerfil from "./pages/perfil/PDePerfil.jsx";
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BuscarReceita from "./pages/BuscarReceita/BuscarReceita.jsx";
+
 function App() {
     return (
         <>
             <ThemeContext>
                 <AppContextDiv>
-                    <PDePerfil />
+                    <Router>
+                        <Header />
+                        <Routes>
+                            <Route path="/" element={<Inicial />} />
+                            <Route path="/enviarreceita" element={<EnviarReceita />} />
+                            <Route path="/sobre" element={<Sobre />} />
+                            <Route path="/perfil" element={<PDePerfil />} />
+                            <Route path="/receita" element={<PDeReceita />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/ranking" element={<Ranking />} />
+                            <Route path="/buscar" element={<BuscarReceita />} />
+                        </Routes>
+                        <Footer />
+                    </Router>
                 </AppContextDiv>
             </ThemeContext>
         </>

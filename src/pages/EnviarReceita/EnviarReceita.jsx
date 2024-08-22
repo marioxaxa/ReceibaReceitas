@@ -117,7 +117,7 @@ export default function EnviarReceita() {
       };
 
       await addDoc(collection(db, "receitas"), receitaData);
-      console.log("Receita enviada com sucesso!");
+  
       
       // Limpar o formulário e mensagens de erro
       setFormData({
@@ -146,7 +146,6 @@ export default function EnviarReceita() {
 
   return (
     <div>
-      <Header />
       <main>
         <section>
           <div id="nos-mande">
@@ -434,7 +433,6 @@ export default function EnviarReceita() {
         </section>
         
       </main>
-      <Footer />
     </div>
   );
 }

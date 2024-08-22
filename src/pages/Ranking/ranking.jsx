@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getFirestore, collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import app from "./firebase";
+import app from "../../services/firebaseapp";
 import { Box, Grid, Card, CardMedia, CardContent, Typography, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Footer from "../../components/footer/Footer";
@@ -39,7 +39,6 @@ const Ranking = () => {
 
   return (
     <>
-      <Header />
       <Box
         sx={{
           display: "flex",
@@ -111,7 +110,6 @@ const Ranking = () => {
           </Grid>
         </Box>
       </Box>
-      <Footer />
     </>
   );
 };

@@ -1,5 +1,5 @@
 export default function getCookie(cname) {
-    console.log('cookie pego')
+
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(";");
