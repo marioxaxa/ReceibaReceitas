@@ -1,0 +1,292 @@
+* {
+    margin: 0;
+    padding: 0;
+    --text: #0d0402;
+    --background: #fefcfb;
+    --primary: #de702b;
+    --secondary: #deed87;
+    --accent: #bae65b;
+  }
+  
+  body {
+    font-family: "DM Sans", sans-serif;
+    background-color: var(--primary);
+  }
+  
+  /* Inicio do header */
+  header {
+    background-color: var(--text);
+    color: #c4c4c4;
+  }
+  
+  #header-div {
+    margin: 0 20%;
+    padding: 1% 0 1.5% 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  .header-options {
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    flex: 1;
+  }
+  
+  #header-logo {
+    flex: 1;
+  }
+  
+  .header-options > div {
+    flex: 1;
+  }
+  
+  .header-options > div > a {
+    text-decoration: none;
+    color: #c4c4c4;
+  }
+  
+  .header-options > div > a:link {
+    color: #c4c4c4;
+  }
+  .header-options > div > a:visited {
+    color: #c4c4c4;
+  }
+  
+  .header-options > div > a:hover {
+    color: var(--primary);
+  }
+  
+  input#menu-bars[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: transparent;
+    /* Not removed via appearance */
+    margin: 0;
+  }
+  
+  #div-menu-bars {
+    display: none;
+  }
+  
+  @media (max-width: 600px) {
+    #header-logo {
+      display: none;
+    }
+  
+    #header-div {
+      margin: 0 10%;
+      padding: 5% 0;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    #header-div:has(input#menu-bars[type="checkbox"]:checked) > .header-options {
+      display: none;
+    }
+  
+    #div-menu-bars {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    input#menu-bars[type="checkbox"] {
+      appearance: none;
+      margin: 0;
+      font: inherit;
+      color: currentColor;
+      width: 2rem;
+      height: 2rem;
+      transform: translateY(-0.075em);
+      transform: rotate(90deg);
+      transition: 0.5s;
+      content: url(../../public/svgs/menubars.svg);
+    }
+  
+    input#menu-bars[type="checkbox"]:checked {
+      transform: rotate(0deg);
+    }
+  
+    .header-options {
+      font-size: larger;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .header-options > div {
+      margin-top: 1rem;
+    }
+  }
+  
+  /* Final do header */
+  
+  section {
+    margin: 2.5% 10%;
+  }
+  
+  #nos-mande {
+    background-color: var(--secondary);
+    padding: 4% 8%;
+    border-radius: 15px;
+    font-size: 180%;
+  }
+  
+  #form-receita {
+    background-color: var(--background);
+    border-radius: 15px;
+    margin-top: 3%;
+    padding: 4% 8%;
+    padding-top: 3%;
+  }
+  
+  #nome-receita {
+    display: flex;
+  }
+  
+  #nome-receita > input {
+    width: 100%;
+  }
+  
+  
+  #tempo {
+    width: 100%;
+  }
+  
+  
+  .error {
+              color: red;
+          }
+  
+  
+  #preparo-receita {
+    display: flex;
+    height: 250px;
+  }
+  
+  @media (max-width: 900px) {
+    section {
+      margin: 2.5% 5%;
+    }
+  
+    #nos-mande {
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  
+  
+     
+    .error {
+      color: red;
+  }
+  
+  #receita_enviada {
+      color: green;
+  }
+    
+  
+    #preparo-receita > textarea {
+      width: auto;
+      height: 100%;
+    }
+  }
+  
+  
+  
+  
+  
+  input[type="text"] {
+    padding: 10px 12px;
+   
+    margin: 2% 1%;
+  }
+  
+  
+  textarea {
+    padding: 10px 12px;
+    border: solid 2px black;
+    border-radius: 15px;
+    resize: none;
+  }
+  
+  textarea::-webkit-input-placeholder {
+    color: var(--black);
+    font-size: 15px;
+    font-style: bold;
+    font-family: "DM Sans", sans-serif;
+  }
+  
+  input::-webkit-input-placeholder {
+    color: var(--black);
+    font-size: 15px;
+    font-style: bold;
+  }
+  
+  
+  footer {
+    background-color: var(--text);
+    color: #c4c4c4;
+  }
+  
+  #footer-div {
+    margin: 0 20%;
+    padding: 1% 0 1.5% 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #footer-sociais {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+  }
+  
+  @media (max-width: 900px) {
+    #footer-div {
+      margin: 0 10%;
+    }
+  }
+  
+  @media (max-width: 650px) {
+    #footer-div {
+      gap: 20%;
+    }
+  }
+
+  /* Estilo para o cabeçalho "Nos mande sua receita" */
+#nos-mande {
+  background-color: #28a745; /* Cor de fundo verde */
+  color: white; /* Cor do texto */
+  padding: 20px; /* Espaçamento interno */
+  text-align: center; /* Centralizar o texto */
+  border-radius: 5px; /* Bordas arredondadas */
+  margin-bottom: 20px; /* Espaço abaixo do cabeçalho */
+}
+
+#nos-mande h1 {
+  font-size: 2.5rem; /* Tamanho maior da fonte */
+  margin: 0; /* Remover margens padrão do h1 */
+}
+
+/* Estilo para a div com id "form-receita" */
+#form-receita {
+  background-color: white; /* Cor de fundo branco */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve para destaque */
+}
