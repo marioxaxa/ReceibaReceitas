@@ -1,180 +1,332 @@
-import React from 'react'
-import Header from '../../components/Header/Header'
+import React, { useState } from "react";
+import Header from "../../components/Header/Header";
 import './EnviarReceita.css'
+import {
+  Grid,
+  Box,
+  TextField,
+  InputLabel,
+  FormControl,
+  Select,
+  MenuItem,
+  Typography,
+  Button
+} from "@mui/material";
 
 export default function EnviarReceita() {
+  // Estado para armazenar os valores dos campos do formulário
+  const [formData, setFormData] = useState({
+    nome_receita: '',
+    tipo: '',
+    tempo: '',
+    porções: '',
+    imagem: null,
+    ingredientes: '',
+    como_fazer: ''
+  });
 
+  // Função para lidar com a mudança dos campos do formulário
+  const handleChange = (event) => {
+    const { id, value, type, files } = event.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [id]: type === 'file' ? files[0] : value
+    }));
+  };
 
+  // Função para lidar com o envio do formulário
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    // Criação do objeto JSON com os dados do formulário
+    const dataToLog = {
+      nome_receita: formData.nome_receita,
+      tipo: formData.tipo,
+      tempo: formData.tempo,
+      porções: formData.porções,
+      imagem: formData.imagem ? formData.imagem.name : null, // Apenas o nome do arquivo
+      ingredientes: formData.ingredientes,
+      como_fazer: formData.como_fazer
+    };
+    
+    // Log do JSON no console
+    console.log("Dados do Formulário:", JSON.stringify(dataToLog, null, 2));
+  };
 
   return (
     <div>
-        <Header >
-            
-        </Header>
-        <main>
+      <Header />
+      <main>
+        <section>
+          <div id="nos-mande">
+            <h1>Nos mande sua receita</h1>
+          </div>
+          <div id="form-receita">
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={2} sx={{ mb: 1 }}>
+                {/* Primeira Coluna: Nome da Receita */}
+                <Grid item xs={8}>
+                  <Box sx={{ mb: 2, width: "100%" }}>
+                    <InputLabel htmlFor="nome_receita" sx={{ mb: 1 }}>
+                      Nome da Receita
+                    </InputLabel>
+                    <TextField
+                      id="nome_receita"
+                      variant="outlined"
+                      fullWidth
+                      value={formData.nome_receita}
+                      onChange={handleChange}
+                    />
+                  </Box>
+                </Grid>
 
+                {/* Segunda Coluna: Tipo */}
+                <Grid item xs={4}>
+                  <Box 
+                    sx={{  
+                      width: "100%", 
+                      display: 'flex', 
+                      justifyContent: 'center' // Centraliza horizontalmente
+                    }}
+                  >
+                    <FormControl fullWidth>
+                      <InputLabel htmlFor="tipo" sx={{ mb: 1 }}>
+                        Tipo
+                      </InputLabel>
+                      <Select
+                        id="tipo"
+                        value={formData.tipo || ''}
+                        onChange={handleChange}
+                        variant="outlined"
+                        sx={{
+                          height: "56px", // Ajustando a altura para form-control-lg
+                        }}
+                      >
+                        <MenuItem value="">
+                          <em>Escolha o tipo</em>
+                        </MenuItem>
+                        <MenuItem value="Ave">Ave</MenuItem>
+                        <MenuItem value="Bebida">Bebida</MenuItem>
+                        <MenuItem value="Carne">Carne</MenuItem>
+                        <MenuItem value="Fruto do Mar">Fruto do Mar</MenuItem>
+                        <MenuItem value="Lanche">Lanche</MenuItem>
+                        <MenuItem value="Massa">Massa</MenuItem>
+                        <MenuItem value="Salada">Salada</MenuItem>
+                        <MenuItem value="Sobremesa">Sobremesa</MenuItem>
+                        <MenuItem value="Sopa">Sopa</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Grid>
+              </Grid>
 
-            
-            <section>
-                <div id="nos-mande">
-                    <h1>Nos mande sua receita</h1>
-                </div>
-                <div id="form-receita">
-                    <form action="">
-                        <div className="mb-1 row">
-                            <div className="mb-0 col-8">
-                                <label
-                                    for="exampleFormControlInput1"
-                                    className="form-label"
-                                    >Nome da Receita</label
-                                >
-                                <input
-                                    type="text"
-                                    className="form-control bg-secondary-subtle border border-secondary-subtle rounded-3"
-                                    id="nome_receita"
-                                    placeholder=""
-                                />
-                            </div>
-                            <div className="mb-0 col">
-                                <label
-                                    for="exampleFormControlInput1"
-                                    className="form-label mb-6"
-                                    >Tipo</label
-                                >
-                                <select
-                                    id="tipo"
-                                    className="form-select bg-secondary-subtle border border-secondary-subtle rounded-3 mt-2 form-control-lg"
-                                    aria-label="Default select example"
-                                >
-                                    <option selected>Escolha o tipo</option>
-                                    <option value="Ave">Ave</option>
-                                    <option value="Bebida">Bebida</option>
-                                    <option value="Carne">Carne</option>
-                                    <option value="Fruto do Mar">
-                                        Fruto do Mar
-                                    </option>
-                                    <option value="Lanche">Lanche</option>
-                                    <option value="Massa">Massa</option>
-                                    <option value="Salada">Salada</option>
-                                    <option value="Sobremesa">Sobremesa</option>
-                                    <option value="Sopa">Sopa</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="mb-1 row">
-                            <div className="mb-3 col-8">
-                                <p id="erro_nome" className="error"></p>
-                            </div>
+              <Grid container spacing={2} sx={{ mb: 1 }}>
+                {/* Primeira Coluna: Erro Nome */}
+                <Grid item xs={8}>
+                  <Box sx={{ mb: 3 }}>
+                    <Typography id="erro_nome" variant="body2" color="error">
+                      {/* Mensagem de erro para Nome da Receita */}
+                    </Typography>
+                  </Box>
+                </Grid>
 
-                            <div className="mb-3 col">
-                                <p id="erro_tipo" className="error"></p>
-                            </div>
-                        </div>
-                        <div id="detalhes-receita" className="row">
-                            <div className="mb-3 col">
-                                <label
-                                    for="exampleFormControlInput1"
-                                    className="form-label"
-                                    >Tempo de Preparo</label
-                                >
-                                <input
-                                    type="text"
-                                    className="form-control bg-secondary-subtle border border-secondary-subtle rounded-3"
-                                    id="tempo"
-                                    placeholder=""
-                                />
-                            </div>
-                            <div className="mb-3 col">
-                                <label
-                                    for="exampleFormControlInput1"
-                                    className="form-label"
-                                    >Número de Porções</label
-                                >
-                                <input
-                                    type="text"
-                                    className="form-control bg-secondary-subtle border border-secondary-subtle rounded-3"
-                                    id="porções"
-                                    placeholder=""
-                                />
-                            </div>
-                            <div className="mb-3 col">
-                                <label
-                                    for="exampleFormControlInput1"
-                                    className="form-label"
-                                    >Imagem</label
-                                >
-                                <input
-                                    className="form-control col bg-secondary-subtle border border-secondary-subtle rounded-3 mt-2"
-                                    type="file"
-                                    id="imagem"
-                                />
-                            </div>
-                        </div>
-                        <div className="mb-1 row">
-                            <div className="col">
-                                <p id="erro_tempo" className="error"></p>
-                            </div>
+                {/* Segunda Coluna: Erro Tipo */}
+                <Grid item xs={4}>
+                  <Box sx={{ mb: 3 }}>
+                    <Typography id="erro_tipo" variant="body2" color="error">
+                      {/* Mensagem de erro para Tipo */}
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
 
-                            <div className="col">
-                                <p id="erro_porção" className="error"></p>
-                            </div>
+              <Grid container spacing={2} id="detalhes-receita">
+                {/* Tempo de Preparo */}
+                <Grid item xs={4}>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel htmlFor="tempo">
+                      Tempo de Preparo
+                    </InputLabel>
+                    <TextField
+                      id="tempo"
+                      variant="outlined"
+                      fullWidth
+                      value={formData.tempo}
+                      onChange={handleChange}
+                      InputProps={{
+                        sx: {
+                          borderRadius: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
 
-                            <div className="col">
-                                <p id="erro_imagem" className="error"></p>
-                            </div>
-                        </div>
-                        <div id="preparo-receita" className="row">
-                            <div className="col-4">
-                                <label
-                                    for="exampleFormControlTextarea1"
-                                    className="form-label"
-                                    >Ingredientes</label
-                                >
-                                <textarea
-                                    className="form-control bg-secondary-subtle border border-secondary-subtle rounded-3"
-                                    id="ingredientes"
-                                    rows="7"
-                                ></textarea>
-                            </div>
-                            <div className="col-8">
-                                <label
-                                    for="exampleFormControlTextarea1"
-                                    className="form-label"
-                                    >Como fazer</label
-                                >
-                                <textarea
-                                    className="form-control bg-secondary-subtle border border-secondary-subtle rounded-3"
-                                    id="como_fazer"
-                                    rows="7"
-                                ></textarea>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-4">
-                                <p id="erro_ingredientes" className="error"></p>
-                            </div>
+                {/* Número de Porções */}
+                <Grid item xs={4}>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel htmlFor="porções">
+                      Número de Porções
+                    </InputLabel>
+                    <TextField
+                      id="porções"
+                      variant="outlined"
+                      fullWidth
+                      value={formData.porções}
+                      onChange={handleChange}
+                      InputProps={{
+                        sx: {
+                          borderRadius: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
 
-                            <div className="col-8">
-                                <p id="erro_como_fazer" className="error"></p>
-                            </div>
-                        </div>
+                {/* Imagem */}
+                <Grid item xs={4}>
+                  <Box sx={{ mb: 3 }}>
+                    <InputLabel htmlFor="imagem">
+                      Imagem
+                    </InputLabel>
+                    <TextField
+                      id="imagem"
+                      type="file"
+                      variant="outlined"
+                      fullWidth
+                      onChange={handleChange}
+                      InputProps={{
+                        sx: {
+                          borderRadius: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
 
-                        <button
-                            id="botão_enviar_receita"
-                            type="button"
-                            className="btn btn-success d-flex align-items-center m-auto"
-                        >
-                            Enviar
-                        </button>
+              <Grid container spacing={2} sx={{ mb: 1 }}>
+                {/* Erro Tempo */}
+                <Grid item xs={4}>
+                  <Box>
+                    <Typography id="erro_tempo" variant="body2" color="error">
+                      {/* Mensagem de erro para Tempo de Preparo */}
+                    </Typography>
+                  </Box>
+                </Grid>
 
-                        <p id="receita_enviada" className="text-center"></p>
-                    </form>
-                </div>
-            </section>
-        </main>
+                {/* Erro Porção */}
+                <Grid item xs={4}>
+                  <Box>
+                    <Typography id="erro_porção" variant="body2" color="error">
+                      {/* Mensagem de erro para Número de Porções */}
+                    </Typography>
+                  </Box>
+                </Grid>
 
+                {/* Erro Imagem */}
+                <Grid item xs={4}>
+                  <Box>
+                    <Typography id="erro_imagem" variant="body2" color="error">
+                      {/* Mensagem de erro para Imagem */}
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
 
+              <Grid container spacing={2} id="preparo-receita">
+                {/* Ingredientes */}
+                <Grid item xs={4}>
+                  <Box>
+                    <InputLabel htmlFor="ingredientes">
+                      Ingredientes
+                    </InputLabel>
+                    <TextField
+                      id="ingredientes"
+                      variant="outlined"
+                      multiline
+                      rows={7}
+                      fullWidth
+                      value={formData.ingredientes}
+                      onChange={handleChange}
+                      InputProps={{
+                        sx: {
+                          borderRadius: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
 
+                {/* Como fazer */}
+                <Grid item xs={8}>
+                  <Box>
+                    <InputLabel htmlFor="como_fazer">
+                      Como fazer
+                    </InputLabel>
+                    <TextField
+                      id="como_fazer"
+                      variant="outlined"
+                      multiline
+                      rows={7}
+                      fullWidth
+                      value={formData.como_fazer}
+                      onChange={handleChange}
+                      InputProps={{
+                        sx: {
+                          borderRadius: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                </Grid>
+              </Grid>
+
+              <Grid container spacing={2}>
+                {/* Erro Ingredientes */}
+                <Grid item xs={4}>
+                  <Box>
+                    <Typography id="erro_ingredientes" variant="body2" color="error">
+                      {/* Mensagem de erro para Ingredientes */}
+                    </Typography>
+                  </Box>
+                </Grid>
+
+                {/* Erro Como Fazer */}
+                <Grid item xs={8}>
+                  <Box>
+                    <Typography id="erro_como_fazer" variant="body2" color="error">
+                      {/* Mensagem de erro para Como fazer */}
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+
+              <Box sx={{ textAlign: 'center', mt: 2 }}>
+                {/* Botão Enviar */}
+                <Button
+                  id="botão_enviar_receita"
+                  variant="contained"
+                  color="success"
+                  type="submit"
+                  sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    m: 'auto' 
+                  }}
+                >
+                  Enviar
+                </Button>
+
+                {/* Mensagem de Receita Enviada */}
+                <Typography id="receita_enviada" variant="body2" sx={{ mt: 2 }}>
+                  {/* Mensagem sobre receita enviada */}
+                </Typography>
+              </Box>
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
-  )
+  );
 }
