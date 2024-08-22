@@ -5,12 +5,20 @@ import ThemeContext from "./context/ThemeContext";
 import EnviarReceita from "./pages/EnviarReceita/EnviarReceita";
 import Inicial from "./pages/Inicial/Inicial";
 import PDeReceita from "./pages/PDeReceita/PDeReceita";
+import Login from "./pages/Login/login";
+import Ranking from "./pages/Ranking/ranking.jsx";
+import Sobre from "./pages/Sobre/Sobre.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import AppContextDiv from "./context/AppContextDiv.jsx";
+import PDePerfil from "./pages/perfil/PDePerfil.jsx";
 
 function App() {
     return (
         <>
             <ThemeContext>
-                <EnviarReceita />
+                <AppContextDiv>
+                    <PDePerfil />
+                </AppContextDiv>
             </ThemeContext>
         </>
     );
